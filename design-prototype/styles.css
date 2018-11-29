@@ -1,0 +1,26 @@
+.main-content {
+    /*height: calc(100vh - 72px);*/
+}
+
+.text-entry {
+    /*height: 20%;*/
+}
+
+.results {
+    /*height: 50%;*/
+}
+
+.text-markup {
+    /*height: 60vh;*/
+    overflow-y: auto;
+}
+
+.correction-list {
+    /*height: 60vh;*/
+    /*height: 100%;*/
+    overflow-y: auto;
+}
+
+.text-copy:hover {
+    text-decoration: none;
+}
