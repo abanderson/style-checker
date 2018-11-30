@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             ruleName: DataTypes.STRING,
             searchRegex: {
-                DataTypes.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 unique: true
             },
