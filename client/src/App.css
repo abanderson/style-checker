@@ -1,0 +1,16 @@
+.text-markup {
+    overflow-y: auto;
+}
+
+.correction-list {
+    overflow-y: auto;
+}
+
+.text-copy {
+    cursor: pointer;
+    color: grey;
+}
+
+.text-copy:hover {
+    color: #535353;
+}
