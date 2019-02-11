@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = props => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/" className="navbar-brand">
@@ -22,7 +22,7 @@ const Navbar = () => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <Link to="/rules" className="nav-link">
-                            50 rules enabled
+                            {props.numStyleRules} rules enabled
                         </Link>
                     </li>
                 </ul>
