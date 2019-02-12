@@ -40,7 +40,17 @@ class App extends Component {
                 <div className="container">
                     <Switch>
                         <Route exact path="/" component={StyleChecker} />
-                        <Route exact path="/rules" component={Rules} />
+                        {/* <Route exact path="/rules" component={Rules} /> */}
+                        <Route
+                            exact
+                            path="/rules"
+                            render={props => (
+                                <Rules
+                                    {...props}
+                                    styleRules={this.state.styleRules}
+                                />
+                            )}
+                        />
                     </Switch>
                 </div>
             </div>
