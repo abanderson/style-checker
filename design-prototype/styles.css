@@ -24,3 +24,11 @@
 .text-copy:hover {
     text-decoration: none;
 }
+
+.delete-rule-control {
+    cursor: pointer;
+}
+
+.delete-rule-control:hover {
+    color: #777777;
+}
