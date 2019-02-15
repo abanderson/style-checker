@@ -22,7 +22,12 @@ const Navbar = props => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <Link to="/rules" className="nav-link">
-                            {props.numStyleRules} rules enabled
+                            {props.numStyleRules} rules loaded
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/add-rule" className="nav-link">
+                            &#10010;
                         </Link>
                     </li>
                 </ul>
