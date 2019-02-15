@@ -4,6 +4,7 @@ import Axios from "axios";
 import Navbar from "./components/Navbar";
 import StyleChecker from "./components/StyleChecker";
 import Rules from "./components/Rules";
+import AddRule from "./components/AddRule";
 import "./App.css";
 
 class App extends Component {
@@ -40,7 +41,6 @@ class App extends Component {
                 <div className="container">
                     <Switch>
                         <Route exact path="/" component={StyleChecker} />
-                        {/* <Route exact path="/rules" component={Rules} /> */}
                         <Route
                             exact
                             path="/rules"
@@ -48,6 +48,17 @@ class App extends Component {
                                 <Rules
                                     {...props}
                                     styleRules={this.state.styleRules}
+                                />
+                            )}
+                        />
+
+                        <Route
+                            exact
+                            path="/add-rule"
+                            render={props => (
+                                <AddRule
+                                    {...props}
+                                    onAddRule={this.getStyleRules.bind(this)}
                                 />
                             )}
                         />
