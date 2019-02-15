@@ -45,23 +45,59 @@ class AddRule extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        Axios.post("http://localhost:3001/rules/", {
-            ruleName: this.state.ruleName,
-            searchRegex: this.state.searchRegex,
-            displayText: this.state.displayText,
-            isCorrection: this.state.isCorrection,
-            correctionRegex: this.state.correctionRegex,
-            ruleSource: this.state.ruleSource,
-            isEnabled: this.state.isEnabled
-        })
-            .then(response => {
-                console.log(response);
-                this.props.onAddRule();
-                this.resetState();
+        let isValid = this.validateForm();
+
+        if (isValid) {
+            Axios.post("http://localhost:3001/rules/", {
+                ruleName: this.state.ruleName,
+                searchRegex: this.state.searchRegex,
+                displayText: this.state.displayText,
+                isCorrection: this.state.isCorrection,
+                correctionRegex: this.state.correctionRegex,
+                ruleSource: this.state.ruleSource,
+                isEnabled: this.state.isEnabled
             })
-            .catch(error => {
-                console.error(error);
+                .then(response => {
+                    console.log(response);
+                    this.props.onAddRule();
+                    this.resetState();
+                    document.getElementsByClassName(
+                        "searchRegexInfo"
+                    )[0].innerHTML = "";
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+    }
+
+    testMethod() {
+        document.getElementsByClassName(
+            "searchRegexInfo"
+        )[0].innerHTML = this.state.searchRegex;
+    }
+
+    validateForm() {
+        let isValid = true;
+
+        if (this.state.searchRegex === "") {
+            document.getElementsByClassName("searchRegexInfo")[0].innerHTML =
+                "Field cannot be blank";
+            isValid = false;
+        } else {
+            this.props.styleRules.forEach(rule => {
+                console.log(rule.searchRegex);
+                if (this.state.searchRegex === rule.searchRegex) {
+                    document.getElementsByClassName(
+                        "searchRegexInfo"
+                    )[0].innerHTML =
+                        "This expression already exists in the database.";
+                    isValid = false;
+                }
             });
+        }
+
+        return isValid;
     }
 
     render() {
@@ -95,6 +131,7 @@ class AddRule extends Component {
                                 value={this.state.searchRegex}
                                 onChange={this.handleChange}
                             />
+                            <small className="searchRegexInfo text-danger" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="displayText">Display text</label>
