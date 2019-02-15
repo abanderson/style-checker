@@ -58,6 +58,7 @@ class App extends Component {
                             render={props => (
                                 <AddRule
                                     {...props}
+                                    styleRules={this.state.styleRules}
                                     onAddRule={this.getStyleRules.bind(this)}
                                 />
                             )}
