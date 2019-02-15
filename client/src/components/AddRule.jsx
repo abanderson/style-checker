@@ -58,7 +58,7 @@ class AddRule extends Component {
                 isEnabled: this.state.isEnabled
             })
                 .then(response => {
-                    console.log(response);
+                    // console.log(response);
                     this.props.onAddRule();
                     this.resetState();
                     document.getElementsByClassName(
@@ -71,12 +71,6 @@ class AddRule extends Component {
         }
     }
 
-    testMethod() {
-        document.getElementsByClassName(
-            "searchRegexInfo"
-        )[0].innerHTML = this.state.searchRegex;
-    }
-
     validateForm() {
         let isValid = true;
 
@@ -86,7 +80,6 @@ class AddRule extends Component {
             isValid = false;
         } else {
             this.props.styleRules.forEach(rule => {
-                console.log(rule.searchRegex);
                 if (this.state.searchRegex === rule.searchRegex) {
                     document.getElementsByClassName(
                         "searchRegexInfo"
