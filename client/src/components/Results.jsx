@@ -5,7 +5,7 @@ import MatchedRules from "./MatchedRules";
 const Results = () => {
     return (
         <div>
-            <div className="row results mb-4">
+            <div className="row results mt-3 mb-3">
                 <div className="col">
                     <ResultsText />
                 </div>

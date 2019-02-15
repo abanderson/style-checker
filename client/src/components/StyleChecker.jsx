@@ -4,9 +4,11 @@ import Results from "./Results";
 
 const StyleChecker = () => {
     return (
-        <div>
-            <SourceText />
-            <Results />
+        <div className="row mt-3 mb-3 text-entry">
+            <div className="col">
+                <SourceText />
+                <Results />
+            </div>
         </div>
     );
 };
