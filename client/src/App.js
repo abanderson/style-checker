@@ -40,7 +40,16 @@ class App extends Component {
                 <Navbar numStyleRules={this.state.numStyleRules} />
                 <div className="container">
                     <Switch>
-                        <Route exact path="/" component={StyleChecker} />
+                        <Route
+                            exact
+                            path="/"
+                            render={props => (
+                                <StyleChecker
+                                    {...props}
+                                    styleRules={this.state.styleRules}
+                                />
+                            )}
+                        />
                         <Route
                             exact
                             path="/rules"
