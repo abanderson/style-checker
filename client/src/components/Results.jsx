@@ -2,7 +2,7 @@ import React from "react";
 import ResultsText from "./ResultsText";
 import MatchedRules from "./MatchedRules";
 
-const Results = () => {
+const Results = ({ ruleMatches }) => {
     return (
         <div>
             <div className="row results mt-3 mb-3">
@@ -10,7 +10,7 @@ const Results = () => {
                     <ResultsText />
                 </div>
                 <div className="col">
-                    <MatchedRules />
+                    <MatchedRules ruleMatches={ruleMatches} />
                 </div>
             </div>
         </div>
