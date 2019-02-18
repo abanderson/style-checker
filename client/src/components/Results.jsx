@@ -2,15 +2,15 @@ import React from "react";
 import ResultsText from "./ResultsText";
 import MatchedRules from "./MatchedRules";
 
-const Results = ({ ruleMatches }) => {
+const Results = ({ ruleMatches, editedText }) => {
     return (
         <div>
             <div className="row results mt-3 mb-3">
                 <div className="col">
-                    <ResultsText />
+                    <MatchedRules ruleMatches={ruleMatches} />
                 </div>
                 <div className="col">
-                    <MatchedRules ruleMatches={ruleMatches} />
+                    <ResultsText editedText={editedText} />
                 </div>
             </div>
         </div>
