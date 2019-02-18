@@ -26,6 +26,7 @@ class SourceText extends Component {
                     placeholder="Enter text to check"
                     id="exampleFormControlTextarea1"
                     rows="3"
+                    autoFocus={true}
                     value={this.state.sourceText}
                     onChange={this.handleChange}
                 />
