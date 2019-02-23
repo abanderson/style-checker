@@ -1,9 +1,15 @@
 import React from "react";
 import MatchedRule from "./MatchedRule";
 
-const MatchedRules = ({ ruleMatches }) => {
+const MatchedRules = ({ ruleMatches, setHighlightedText }) => {
     const matchedRules = ruleMatches.map((matchedRule, index) => {
-        return <MatchedRule key={index} matchedRule={matchedRule} />;
+        return (
+            <MatchedRule
+                key={index}
+                matchedRule={matchedRule}
+                setHighlightedText={setHighlightedText}
+            />
+        );
     });
 
     return (
