@@ -4,6 +4,10 @@ class MatchedRule extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            className: "list-group-item"
+        };
+
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
     }
@@ -12,19 +16,26 @@ class MatchedRule extends Component {
         console.log(
             `Mouse over rule: ${this.props.matchedRule.matchedRuleName}`
         );
-        //  Don't do this: console.log(this.props.key);
+
+        this.setState({ className: "list-group-item active" });
+        this.props.setHighlightedText(
+            `HIGHLIGHTED: ${this.props.matchedRule.matchedRuleDisplayText}`
+        );
     }
 
     handleMouseOut() {
         console.log(
             `Mouse out of rule: ${this.props.matchedRule.matchedRuleName}`
         );
+
+        this.setState({ className: "list-group-item" });
+        this.props.setHighlightedText("");
     }
 
     render() {
         return (
             <li
-                className="list-group-item"
+                className={this.state.className}
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
             >
