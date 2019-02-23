@@ -8,10 +8,12 @@ class StyleChecker extends Component {
 
         this.state = {
             editedText: "",
+            highlightedText: "",
             ruleMatches: []
         };
 
         this.handleTextInput = this.handleTextInput.bind(this);
+        this.handleHighlightedText = this.handleHighlightedText.bind(this);
         this.checkStyle = this.checkStyle.bind(this);
     }
 
@@ -21,6 +23,11 @@ class StyleChecker extends Component {
         });
 
         this.checkStyle(textInput);
+    }
+
+    handleHighlightedText(highlightedText) {
+        this.setState({ highlightedText: highlightedText });
+        console.log("handleHighlightedText triggered");
     }
 
     checkStyle(sourceText) {
@@ -82,6 +89,7 @@ class StyleChecker extends Component {
                     <Results
                         ruleMatches={this.state.ruleMatches}
                         editedText={this.state.editedText}
+                        setHighlightedText={this.handleHighlightedText}
                     />
                 </div>
             </div>
