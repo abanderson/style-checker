@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
                 unique: true
             },
             displayText: DataTypes.STRING,
-            correctionAvailable: DataTypes.BOOLEAN,
             correctionRegex: DataTypes.STRING,
             ruleSource: DataTypes.STRING,
             isEnabled: DataTypes.BOOLEAN
