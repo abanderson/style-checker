@@ -19,9 +19,6 @@ module.exports = {
       displayText: {
         type: Sequelize.STRING
       },
-      correctionAvailable: {
-        type: Sequelize.BOOLEAN
-      },
       correctionRegex: {
         type: Sequelize.STRING
       },
