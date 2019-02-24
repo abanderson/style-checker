@@ -14,3 +14,7 @@
 .text-copy:hover {
     color: #535353;
 }
+
+.highlighted-text {
+    background-color: #ffff0c;
+}
