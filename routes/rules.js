@@ -19,7 +19,6 @@ router.post("/", function(req, res, next) {
         ruleName: req.body.ruleName,
         searchRegex: req.body.searchRegex,
         displayText: req.body.displayText,
-        correctionAvailable: req.body.correctionAvailable,
         correctionRegex: req.body.correctionRegex,
         ruleSource: req.body.ruleSource,
         isEnabled: req.body.isEnabled
