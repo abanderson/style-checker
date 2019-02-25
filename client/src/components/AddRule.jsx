@@ -9,7 +9,6 @@ class AddRule extends Component {
             ruleName: "",
             searchRegex: "",
             displayText: "",
-            isCorrection: false,
             correctionRegex: "",
             ruleSource: "",
             isEnabled: true
@@ -24,7 +23,6 @@ class AddRule extends Component {
             ruleName: "",
             searchRegex: "",
             displayText: "",
-            isCorrection: false,
             correctionRegex: "",
             ruleSource: "",
             isEnabled: true
@@ -52,7 +50,6 @@ class AddRule extends Component {
                 ruleName: this.state.ruleName,
                 searchRegex: this.state.searchRegex,
                 displayText: this.state.displayText,
-                isCorrection: this.state.isCorrection,
                 correctionRegex: this.state.correctionRegex,
                 ruleSource: this.state.ruleSource,
                 isEnabled: this.state.isEnabled
@@ -138,38 +135,21 @@ class AddRule extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="form-group form-check">
+
+                        <div className="form-group">
+                            <label htmlFor="correctionRegex">
+                                Correction expression
+                            </label>
                             <input
-                                name="isCorrection"
-                                type="checkbox"
-                                className="form-check-input"
-                                id="isCorrection"
-                                checked={this.state.isCorrection}
+                                name="correctionRegex"
+                                type="text"
+                                className="form-control"
+                                id="correctionRegex"
+                                placeholder="Enter regular expression"
+                                value={this.state.correctionRegex}
                                 onChange={this.handleChange}
                             />
-                            <label
-                                className="form-check-label"
-                                htmlFor="isCorrection"
-                            >
-                                Correction available?
-                            </label>
                         </div>
-                        <fieldset disabled={!this.state.isCorrection}>
-                            <div className="form-group">
-                                <label htmlFor="correctionRegex">
-                                    Correction expression
-                                </label>
-                                <input
-                                    name="correctionRegex"
-                                    type="text"
-                                    className="form-control"
-                                    id="correctionRegex"
-                                    placeholder="Enter regular expression"
-                                    value={this.state.correctionRegex}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </fieldset>
                         <div className="form-group">
                             <label htmlFor="ruleSource">Rule source</label>
                             <input
