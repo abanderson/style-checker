@@ -27,7 +27,7 @@ const Navbar = props => {
                     </li>
                     <li className="nav-item">
                         <Link to="/add-rule" className="nav-link">
-                            &#10010;
+                            <span className="fas fa-plus" />
                         </Link>
                     </li>
                 </ul>
