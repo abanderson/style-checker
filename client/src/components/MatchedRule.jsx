@@ -13,23 +13,31 @@ class MatchedRule extends Component {
     }
 
     handleMouseOver() {
-        console.log(
-            `Mouse over rule: ${this.props.matchedRule.matchedRuleName}`
+        let preText = this.props.matchedRule.input.slice(
+            0,
+            this.props.matchedRule.index
+        );
+        let postText = this.props.matchedRule.input.slice(
+            this.props.matchedRule.index +
+                this.props.matchedRule.match[0].length,
+            this.props.matchedRule.input.length
         );
 
         this.setState({ className: "list-group-item active" });
-        this.props.setHighlightedText(
-            `HIGHLIGHTED: ${this.props.matchedRule.matchedRuleDisplayText}`
-        );
+        this.props.setHighlightedText({
+            preText: preText,
+            text: this.props.matchedRule.match[0],
+            postText: postText
+        });
     }
 
     handleMouseOut() {
-        console.log(
-            `Mouse out of rule: ${this.props.matchedRule.matchedRuleName}`
-        );
-
         this.setState({ className: "list-group-item" });
-        this.props.setHighlightedText("");
+        this.props.setHighlightedText({
+            preText: "",
+            text: "",
+            postText: ""
+        });
     }
 
     render() {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ResultsText = ({ editedText }) => {
+const ResultsText = ({ editedText, highlightedText }) => {
     return (
         <div>
             <div className="text-markup">
@@ -12,7 +12,17 @@ const ResultsText = ({ editedText }) => {
                     </span>
                 </div>
             </div>
-            <p>{editedText}</p>
+            {highlightedText.text !== "" ? (
+                <p>
+                    {highlightedText.preText}
+                    <span className="highlighted-text">
+                        {highlightedText.text}
+                    </span>
+                    {highlightedText.postText}
+                </p>
+            ) : (
+                <p>{editedText}</p>
+            )}
         </div>
     );
 };
