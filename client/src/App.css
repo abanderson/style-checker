@@ -18,3 +18,11 @@
 .highlighted-text {
     background-color: #ffff0c;
 }
+
+.delete-rule-control {
+    cursor: pointer;
+}
+
+.delete-rule-control:hover {
+    color: #777777;
+}
