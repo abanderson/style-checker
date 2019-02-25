@@ -28,12 +28,11 @@ const Rules = ({ styleRules }) => {
                             <th scope="col">Name</th>
                             <th scope="col">Search</th>
                             <th scope="col">Details</th>
-                            <th scope="col">Correction?</th>
                             <th scope="col">Correction</th>
                             <th scope="col">Source</th>
                             <th scope="col">Enabled</th>
-                            <th scope="col">Created</th>
-                            <th scope="col">Last Updated</th>
+                            <th scope="col">Updated</th>
+                            <th scope="col" />
                         </tr>
                     </thead>
                     <tbody>{rules}</tbody>
