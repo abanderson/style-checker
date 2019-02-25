@@ -29,6 +29,27 @@
     cursor: pointer;
 }
 
-.delete-rule-control:hover {
+.matched-rule {
+    display: flex;
+}
+
+.matched-rule-info {
+    width: 90%;
+}
+
+.matched-rule-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 10%;
+}
+
+.matched-rule-control {
+    text-align: center;
+    cursor: pointer;
+}
+
+.delete-rule-control:hover,
+.matched-rule-control:hover {
     color: #777777;
 }
