@@ -6,10 +6,7 @@ const Rule = ({ rule, ruleNum }) => {
         month: "short",
         day: "numeric"
     };
-    const ruleCreated = new Date(rule.createdAt).toLocaleString(
-        "en-us",
-        options
-    );
+
     const ruleUpdated = new Date(rule.updatedAt).toLocaleString(
         "en-us",
         options
@@ -21,12 +18,13 @@ const Rule = ({ rule, ruleNum }) => {
             <td>{rule.ruleName}</td>
             <td>{rule.searchRegex}</td>
             <td>{rule.displayText}</td>
-            <td>{rule.correctionAvailable ? "True" : "False"}</td>
             <td>{rule.correctionRegex}</td>
             <td>{rule.ruleSource}</td>
             <td>{rule.isEnabled ? "True" : "False"}</td>
-            <td>{ruleCreated}</td>
             <td>{ruleUpdated}</td>
+            <td className="delete-rule-control">
+                <span className="fas fa-times" />
+            </td>
         </tr>
     );
 };
