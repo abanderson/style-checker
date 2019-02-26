@@ -41,12 +41,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     width: 10%;
 }
 
 .matched-rule-control {
-    text-align: center;
+    /*text-align: center;*/
     cursor: pointer;
+    /*border: 1px solid black;*/
+    /*height: 35px;*/
 }
 
 .delete-rule-control:hover,
