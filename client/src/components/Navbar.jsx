@@ -22,7 +22,9 @@ const Navbar = props => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <Link to="/rules" className="nav-link">
-                            {props.numStyleRules} rules loaded
+                            {props.numStyleRules}{" "}
+                            {props.numStyleRules === 1 ? "rule" : "rules"}{" "}
+                            loaded
                         </Link>
                     </li>
                     <li className="nav-item">
