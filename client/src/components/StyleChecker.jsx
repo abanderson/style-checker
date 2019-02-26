@@ -18,6 +18,7 @@ class StyleChecker extends Component {
 
         this.handleTextInput = this.handleTextInput.bind(this);
         this.handleHighlightedText = this.handleHighlightedText.bind(this);
+        this.handleDismissRule = this.handleDismissRule.bind(this);
         this.checkStyle = this.checkStyle.bind(this);
     }
 
@@ -39,12 +40,44 @@ class StyleChecker extends Component {
         });
     }
 
+    handleDismissRule(indexToDismiss) {
+        const newRuleMatches = this.state.ruleMatches.map(
+            (ruleMatch, index) => {
+                if (index === indexToDismiss) {
+                    return {
+                        id: ruleMatch.id,
+                        match: ruleMatch.match,
+                        index: ruleMatch.index,
+                        input: ruleMatch.input,
+                        length: ruleMatch.length,
+                        matchedRuleName: ruleMatch.ruleName,
+                        matchedRuleDisplayText:
+                            ruleMatch.matchedRuleDisplayText,
+                        matchedRuleSource: ruleMatch.matchedRuleSource,
+                        isDisplayed: false
+                    };
+                } else {
+                    return ruleMatch;
+                }
+            }
+        );
+        this.setState({
+            highlightedText: {
+                preText: "",
+                text: "",
+                postText: ""
+            },
+            ruleMatches: newRuleMatches
+        });
+    }
+
     checkStyle(sourceText) {
         console.clear();
         this.setState({
             ruleMatches: []
         });
         let matches = [];
+        let matchId = 0;
 
         this.props.styleRules.forEach(rule => {
             if (rule.isEnabled) {
@@ -54,6 +87,7 @@ class StyleChecker extends Component {
                 while ((match = re.exec(sourceText))) {
                     console.log(`Found ${match[0]} at ${match.index}`);
                     matches.push({
+                        id: matchId,
                         match: [...match],
                         index: match.index,
                         input: match.input,
@@ -63,8 +97,10 @@ class StyleChecker extends Component {
                             match,
                             rule
                         ),
-                        matchedRuleSource: rule.ruleSource
+                        matchedRuleSource: rule.ruleSource,
+                        isDisplayed: true
                     });
+                    matchId++;
                 }
             }
         });
@@ -100,6 +136,7 @@ class StyleChecker extends Component {
                         editedText={this.state.editedText}
                         highlightedText={this.state.highlightedText}
                         setHighlightedText={this.handleHighlightedText}
+                        setDismissedRule={this.handleDismissRule}
                     />
                 </div>
             </div>

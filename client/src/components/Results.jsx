@@ -6,7 +6,8 @@ const Results = ({
     ruleMatches,
     editedText,
     highlightedText,
-    setHighlightedText
+    setHighlightedText,
+    setDismissedRule
 }) => {
     return (
         <div>
@@ -15,6 +16,7 @@ const Results = ({
                     <MatchedRules
                         ruleMatches={ruleMatches}
                         setHighlightedText={setHighlightedText}
+                        setDismissedRule={setDismissedRule}
                     />
                 </div>
                 <div className="col">

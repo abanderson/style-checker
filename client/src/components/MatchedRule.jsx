@@ -5,11 +5,13 @@ class MatchedRule extends Component {
         super(props);
 
         this.state = {
-            className: "list-group-item"
+            className: "list-group-item pr-0",
+            isDismissed: false
         };
 
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.handleClickDismiss = this.handleClickDismiss.bind(this);
     }
 
     handleMouseOver() {
@@ -23,7 +25,7 @@ class MatchedRule extends Component {
             this.props.matchedRule.input.length
         );
 
-        this.setState({ className: "list-group-item active" });
+        // this.setState({ className: "list-group-item active pr-0" });
         this.props.setHighlightedText({
             preText: preText,
             text: this.props.matchedRule.match[0],
@@ -32,12 +34,16 @@ class MatchedRule extends Component {
     }
 
     handleMouseOut() {
-        this.setState({ className: "list-group-item" });
+        // this.setState({ className: "list-group-item pr-0" });
         this.props.setHighlightedText({
             preText: "",
             text: "",
             postText: ""
         });
+    }
+
+    handleClickDismiss() {
+        this.props.setDismissedRule(this.props.dataId);
     }
 
     render() {
@@ -47,11 +53,28 @@ class MatchedRule extends Component {
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
             >
-                <strong>{this.props.matchedRule.match[0]}</strong>
-                <br />
-                {this.props.matchedRule.matchedRuleDisplayText}
-                <br />
-                <small>{this.props.matchedRule.matchedRuleSource}</small>
+                <div className="matched-rule">
+                    <div className="matched-rule-info">
+                        <strong>{this.props.matchedRule.match[0]}</strong>
+                        <br />
+                        {this.props.matchedRule.matchedRuleDisplayText}
+                        <br />
+                        <small>
+                            {this.props.matchedRule.matchedRuleSource}
+                        </small>
+                    </div>
+                    <div className="matched-rule-controls">
+                        <div
+                            className="matched-rule-control"
+                            onClick={this.handleClickDismiss}
+                        >
+                            <span className="fas fa-times" />
+                        </div>
+                        <div className="matched-rule-control">
+                            <span className="fas fa-check" />
+                        </div>
+                    </div>
+                </div>
             </li>
         );
     }
