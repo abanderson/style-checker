@@ -7,7 +7,8 @@ const Results = ({
     editedText,
     highlightedText,
     setHighlightedText,
-    setDismissedRule
+    setDismissedRule,
+    correctRule
 }) => {
     return (
         <div>
@@ -17,6 +18,7 @@ const Results = ({
                         ruleMatches={ruleMatches}
                         setHighlightedText={setHighlightedText}
                         setDismissedRule={setDismissedRule}
+                        correctRule={correctRule}
                     />
                 </div>
                 <div className="col">

@@ -12,6 +12,7 @@ class MatchedRule extends Component {
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.handleClickDismiss = this.handleClickDismiss.bind(this);
+        this.handleClickCorrect = this.handleClickCorrect.bind(this);
     }
 
     handleMouseOver() {
@@ -46,7 +47,15 @@ class MatchedRule extends Component {
         this.props.setDismissedRule(this.props.dataId);
     }
 
+    handleClickCorrect() {
+        this.props.correctRule(this.props.dataId);
+    }
+
     render() {
+        if (this.props.matchedRule.matchedRuleCorrectionText === "") {
+            console.log("Empty matched rule text");
+        }
+
         return (
             <li
                 className={this.state.className}
@@ -70,7 +79,10 @@ class MatchedRule extends Component {
                         >
                             <span className="fas fa-times" />
                         </div>
-                        <div className="matched-rule-control">
+                        <div
+                            className="matched-rule-control"
+                            onClick={this.handleClickCorrect}
+                        >
                             <span className="fas fa-check" />
                         </div>
                     </div>

@@ -19,6 +19,7 @@ class StyleChecker extends Component {
         this.handleTextInput = this.handleTextInput.bind(this);
         this.handleHighlightedText = this.handleHighlightedText.bind(this);
         this.handleDismissRule = this.handleDismissRule.bind(this);
+        this.handleCorrectRule = this.handleCorrectRule.bind(this);
         this.checkStyle = this.checkStyle.bind(this);
     }
 
@@ -71,6 +72,26 @@ class StyleChecker extends Component {
         });
     }
 
+    handleCorrectRule(indexToCorrect) {
+        let rule = this.state.ruleMatches[indexToCorrect];
+        let editedText =
+            this.state.editedText.slice(0, rule.index) +
+            rule.matchedRuleCorrectionText +
+            this.state.editedText.slice(
+                rule.index + rule.match[0].length,
+                rule.input.length
+            );
+        this.setState({
+            editedText: editedText,
+            highlightedText: {
+                preText: "",
+                text: "",
+                postText: ""
+            }
+        });
+        this.checkStyle(editedText);
+    }
+
     checkStyle(sourceText) {
         console.clear();
         this.setState({
@@ -97,6 +118,10 @@ class StyleChecker extends Component {
                             match,
                             rule
                         ),
+                        matchedRuleCorrectionText: this.generateRuleCorrectionText(
+                            match,
+                            rule
+                        ),
                         matchedRuleSource: rule.ruleSource,
                         isDisplayed: true
                     });
@@ -104,6 +129,11 @@ class StyleChecker extends Component {
                 }
             }
         });
+
+        // this.state.ruleMatches.forEach(matchedRule => {
+        //     console.log("Here's a matched rule");
+        // });
+
         this.setState({
             ruleMatches: matches
         });
@@ -114,16 +144,28 @@ class StyleChecker extends Component {
         if (reMatch.length === 1) {
             displayText = matchedStyleRule.displayText;
         } else {
-            // console.log(reMatch);
-            // console.log(matchedStyleRule.displayText);
             for (let i = 1; i < reMatch.length; i++) {
-                // console.log(displayText);
-                // console.log(`Match group ${i}: ${reMatch[i]}`);
                 displayText = displayText.replace(`$${i}`, `${reMatch[i]}`);
             }
         }
 
         return displayText;
+    }
+
+    generateRuleCorrectionText(reMatch, matchedStyleRule) {
+        let correctionText = matchedStyleRule.correctionRegex;
+        if (reMatch.length === 1) {
+            correctionText = matchedStyleRule.correctionRegex;
+        } else {
+            for (let i = 1; i < reMatch.length; i++) {
+                correctionText = correctionText.replace(
+                    `$${i}`,
+                    `${reMatch[i]}`
+                );
+            }
+        }
+
+        return correctionText;
     }
 
     render() {
@@ -137,6 +179,7 @@ class StyleChecker extends Component {
                         highlightedText={this.state.highlightedText}
                         setHighlightedText={this.handleHighlightedText}
                         setDismissedRule={this.handleDismissRule}
+                        correctRule={this.handleCorrectRule}
                     />
                 </div>
             </div>

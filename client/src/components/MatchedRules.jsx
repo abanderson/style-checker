@@ -4,7 +4,8 @@ import MatchedRule from "./MatchedRule";
 const MatchedRules = ({
     ruleMatches,
     setHighlightedText,
-    setDismissedRule
+    setDismissedRule,
+    correctRule
 }) => {
     const displayedRules = ruleMatches
         .filter(match => match.isDisplayed)
@@ -16,6 +17,7 @@ const MatchedRules = ({
                     matchedRule={rule}
                     setHighlightedText={setHighlightedText}
                     setDismissedRule={setDismissedRule}
+                    correctRule={correctRule}
                 />
             );
         });
