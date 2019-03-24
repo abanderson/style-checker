@@ -52,8 +52,13 @@ class MatchedRule extends Component {
     }
 
     render() {
+        let correctControlStyle = "";
+
         if (this.props.matchedRule.matchedRuleCorrectionText === "") {
             console.log("Empty matched rule text");
+            correctControlStyle = "matched-rule-control hidden";
+        } else {
+            correctControlStyle = "matched-rule-control";
         }
 
         return (
@@ -74,13 +79,7 @@ class MatchedRule extends Component {
                     </div>
                     <div className="matched-rule-controls">
                         <div
-                            className="matched-rule-control"
-                            onClick={this.handleClickDismiss}
-                        >
-                            <span className="fas fa-times" />
-                        </div>
-                        <div
-                            className="matched-rule-control"
+                            className={correctControlStyle}
                             onClick={this.handleClickCorrect}
                         >
                             <span className="fas fa-check" />
