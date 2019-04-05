@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import PropTypes from "prop-types";
 
 class AddRule extends Component {
     constructor(props) {
@@ -54,13 +55,13 @@ class AddRule extends Component {
                 ruleSource: this.state.ruleSource,
                 isEnabled: this.state.isEnabled
             })
-                .then(response => {
-                    // console.log(response);
+                .then(() => {
                     this.props.onAddRule();
                     this.resetState();
                     document.getElementsByClassName(
                         "searchRegexInfo"
                     )[0].innerHTML = "";
+                    this.props.history.push("/rules");
                 })
                 .catch(error => {
                     console.error(error);
@@ -187,5 +188,11 @@ class AddRule extends Component {
         );
     }
 }
+
+AddRule.propTypes = {
+    onAddRule: PropTypes.func,
+    history: PropTypes.object,
+    styleRules: PropTypes.array
+};
 
 export default AddRule;
