@@ -47,3 +47,7 @@
 .matched-rule-control:hover {
     color: #777777;
 }
+
+.hidden {
+    display: none;
+}
