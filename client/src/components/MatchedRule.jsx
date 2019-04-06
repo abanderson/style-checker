@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class MatchedRule extends Component {
     constructor(props) {
@@ -55,7 +56,6 @@ class MatchedRule extends Component {
         let correctControlStyle = "";
 
         if (this.props.matchedRule.matchedRuleCorrectionText === "") {
-            console.log("Empty matched rule text");
             correctControlStyle = "matched-rule-control hidden";
         } else {
             correctControlStyle = "matched-rule-control";
@@ -90,5 +90,13 @@ class MatchedRule extends Component {
         );
     }
 }
+
+MatchedRule.propTypes = {
+    matchedRule: PropTypes.object,
+    setHighlightedText: PropTypes.func,
+    setDismissedRule: PropTypes.func,
+    dataId: PropTypes.number,
+    correctRule: PropTypes.func
+};
 
 export default MatchedRule;
