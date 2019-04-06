@@ -6,12 +6,14 @@
     overflow-y: auto;
 }
 
-.text-copy {
+.text-copy,
+.text-clear {
     cursor: pointer;
     color: grey;
 }
 
-.text-copy:hover {
+.text-copy:hover,
+.text-clear:hover {
     color: #535353;
 }
 
