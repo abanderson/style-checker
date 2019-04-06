@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class SourceText extends Component {
     constructor(props) {
@@ -34,5 +35,9 @@ class SourceText extends Component {
         );
     }
 }
+
+SourceText.propTypes = {
+    onTextInput: PropTypes.func
+};
 
 export default SourceText;

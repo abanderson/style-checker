@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Rule = ({ rule, ruleNum }) => {
     const options = {
@@ -27,6 +28,11 @@ const Rule = ({ rule, ruleNum }) => {
             </td>
         </tr>
     );
+};
+
+Rule.propTypes = {
+    rule: PropTypes.object,
+    ruleNum: PropTypes.number
 };
 
 export default Rule;

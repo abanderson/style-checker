@@ -1,5 +1,6 @@
 import React from "react";
 import Rule from "./Rule";
+import PropTypes from "prop-types";
 
 const Rules = ({ styleRules }) => {
     const rules = styleRules.map((rule, index) => {
@@ -40,6 +41,10 @@ const Rules = ({ styleRules }) => {
             </div>
         </div>
     );
+};
+
+Rules.propTypes = {
+    styleRules: PropTypes.array
 };
 
 export default Rules;
