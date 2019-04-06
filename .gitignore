@@ -62,3 +62,5 @@ typings/
 
 # Sequelize configuration
 config/
+
+.eslintrc*
