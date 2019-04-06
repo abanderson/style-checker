@@ -25,7 +25,11 @@ const MatchedRules = ({
 
     return (
         <div className="correction-list">
-            <h5>{displayedRules.length} matches found</h5>
+            <h5>
+                {displayedRules.length}{" "}
+                {displayedRules.length === 1 ? "match" : "matches"}
+                {" found"}
+            </h5>
             <ul className="list-group">{displayedRules}</ul>
         </div>
     );
