@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SourceText from "./SourceText";
 import Results from "./Results";
+import PropTypes from "prop-types";
 
 class StyleChecker extends Component {
     constructor(props) {
@@ -93,7 +94,7 @@ class StyleChecker extends Component {
     }
 
     checkStyle(sourceText) {
-        console.clear();
+        // console.clear();
         this.setState({
             ruleMatches: []
         });
@@ -106,7 +107,7 @@ class StyleChecker extends Component {
                 let match;
 
                 while ((match = re.exec(sourceText))) {
-                    console.log(`Found ${match[0]} at ${match.index}`);
+                    // console.log(`Found ${match[0]} at ${match.index}`);
                     matches.push({
                         id: matchId,
                         match: [...match],
@@ -129,10 +130,6 @@ class StyleChecker extends Component {
                 }
             }
         });
-
-        // this.state.ruleMatches.forEach(matchedRule => {
-        //     console.log("Here's a matched rule");
-        // });
 
         this.setState({
             ruleMatches: matches
@@ -186,5 +183,9 @@ class StyleChecker extends Component {
         );
     }
 }
+
+StyleChecker.propTypes = {
+    styleRules: PropTypes.array
+};
 
 export default StyleChecker;

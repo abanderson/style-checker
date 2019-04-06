@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ResultsText = ({ editedText, highlightedText }) => {
     return (
@@ -25,6 +26,11 @@ const ResultsText = ({ editedText, highlightedText }) => {
             )}
         </div>
     );
+};
+
+ResultsText.propTypes = {
+    editedText: PropTypes.string,
+    highlightedText: PropTypes.object
 };
 
 export default ResultsText;

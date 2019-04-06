@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const Navbar = props => {
     return (
@@ -36,6 +37,10 @@ const Navbar = props => {
             </div>
         </nav>
     );
+};
+
+Navbar.propTypes = {
+    numStyleRules: PropTypes.number
 };
 
 export default Navbar;

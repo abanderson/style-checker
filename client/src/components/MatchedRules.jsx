@@ -1,5 +1,6 @@
 import React from "react";
 import MatchedRule from "./MatchedRule";
+import PropTypes from "prop-types";
 
 const MatchedRules = ({
     ruleMatches,
@@ -28,6 +29,13 @@ const MatchedRules = ({
             <ul className="list-group">{displayedRules}</ul>
         </div>
     );
+};
+
+MatchedRules.propTypes = {
+    ruleMatches: PropTypes.array,
+    setHighlightedText: PropTypes.func,
+    setDismissedRule: PropTypes.func,
+    correctRule: PropTypes.func
 };
 
 export default MatchedRules;
