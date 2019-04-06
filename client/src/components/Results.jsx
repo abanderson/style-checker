@@ -1,6 +1,7 @@
 import React from "react";
 import ResultsText from "./ResultsText";
 import MatchedRules from "./MatchedRules";
+import PropTypes from "prop-types";
 
 const Results = ({
     ruleMatches,
@@ -30,6 +31,15 @@ const Results = ({
             </div>
         </div>
     );
+};
+
+Results.propTypes = {
+    ruleMatches: PropTypes.array,
+    editedText: PropTypes.string,
+    highlightedText: PropTypes.object,
+    setHighlightedText: PropTypes.func,
+    setDismissedRule: PropTypes.func,
+    correctRule: PropTypes.func
 };
 
 export default Results;
