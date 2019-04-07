@@ -12,7 +12,8 @@ class AddRule extends Component {
             displayText: "",
             correctionRegex: "",
             ruleSource: "",
-            isEnabled: true
+            isEnabled: true,
+            validationErrorMessage: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,7 +27,8 @@ class AddRule extends Component {
             displayText: "",
             correctionRegex: "",
             ruleSource: "",
-            isEnabled: true
+            isEnabled: true,
+            validationErrorMessage: ""
         });
     }
 
@@ -58,9 +60,6 @@ class AddRule extends Component {
                 .then(() => {
                     this.props.onAddRule();
                     this.resetState();
-                    document.getElementsByClassName(
-                        "searchRegexInfo"
-                    )[0].innerHTML = "";
                     this.props.history.push("/rules");
                 })
                 .catch(error => {
@@ -71,22 +70,24 @@ class AddRule extends Component {
 
     validateForm() {
         let isValid = true;
+        let errorMessage = "";
 
         if (this.state.searchRegex === "") {
-            document.getElementsByClassName("searchRegexInfo")[0].innerHTML =
-                "Field cannot be blank";
+            errorMessage = "Field cannot be blank";
             isValid = false;
         } else {
             this.props.styleRules.forEach(rule => {
                 if (this.state.searchRegex === rule.searchRegex) {
-                    document.getElementsByClassName(
-                        "searchRegexInfo"
-                    )[0].innerHTML =
+                    errorMessage =
                         "This expression already exists in the database.";
                     isValid = false;
                 }
             });
         }
+
+        this.setState({
+            validationErrorMessage: errorMessage
+        });
 
         return isValid;
     }
@@ -122,7 +123,9 @@ class AddRule extends Component {
                                 value={this.state.searchRegex}
                                 onChange={this.handleChange}
                             />
-                            <small className="searchRegexInfo text-danger" />
+                            <small className="searchRegexInfo text-danger">
+                                {this.state.validationErrorMessage}
+                            </small>
                         </div>
                         <div className="form-group">
                             <label htmlFor="displayText">Display text</label>
