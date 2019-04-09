@@ -5,6 +5,36 @@ import PropTypes from "prop-types";
 class Rules extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            filterString: "",
+            filteredRules: []
+        };
+    }
+
+    filterRules(filterString) {
+        const lowerCaseFilterString = filterString.toLowerCase();
+
+        const filteredRules = this.props.styleRules.filter(rule => {
+            return (
+                rule.ruleName.toLowerCase().includes(lowerCaseFilterString) ||
+                rule.searchRegex
+                    .toLowerCase()
+                    .includes(lowerCaseFilterString) ||
+                rule.displayText
+                    .toLowerCase()
+                    .includes(lowerCaseFilterString) ||
+                rule.correctionRegex
+                    .toLowerCase()
+                    .includes(lowerCaseFilterString) ||
+                rule.ruleSource.toLowerCase().includes(lowerCaseFilterString)
+            );
+        });
+
+        this.setState({
+            filterString: filterString,
+            filteredRules: filteredRules
+        });
     }
 
     mapRules(rulesToMap) {
@@ -16,6 +46,14 @@ class Rules extends Component {
     }
 
     render() {
+        let rules;
+
+        if (this.state.filterString === "") {
+            rules = this.mapRules(this.props.styleRules);
+        } else {
+            rules = this.mapRules(this.state.filteredRules);
+        }
+
         return (
             <div className="row mt-3 mb-3">
                 <div className="col">
@@ -29,6 +67,10 @@ class Rules extends Component {
                             className="form-control mb-2 mr-sm-2"
                             id="ruleFilter"
                             placeholder="Filter rules"
+                            value={this.state.filterString}
+                            onChange={event =>
+                                this.filterRules(event.target.value)
+                            }
                         />
                     </form>
                     <table className="table">
@@ -45,20 +87,13 @@ class Rules extends Component {
                                 <th scope="col" />
                             </tr>
                         </thead>
-                        <tbody>{this.mapRules(this.props.styleRules)}</tbody>
+                        <tbody>{rules}</tbody>
                     </table>
                 </div>
             </div>
         );
     }
 }
-
-// const Rules = ({ styleRules }) => {
-//     const rules = styleRules.map((rule, index) => {
-//         return <Rule key={index} rule={rule} ruleNum={index + 1} />;
-//     });
-
-// };
 
 Rules.propTypes = {
     styleRules: PropTypes.array
