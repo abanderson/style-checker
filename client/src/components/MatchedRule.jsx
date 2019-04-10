@@ -56,7 +56,7 @@ class MatchedRule extends Component {
         let correctControlStyle = "";
 
         if (this.props.matchedRule.matchedRuleCorrectionText === "") {
-            correctControlStyle = "matched-rule-control hidden";
+            correctControlStyle = "matched-rule-control no-display";
         } else {
             correctControlStyle = "matched-rule-control";
         }
