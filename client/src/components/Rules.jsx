@@ -73,18 +73,39 @@ class Rules extends Component {
                             }
                         />
                     </form>
-                    <table className="table">
+                    <table className="table small">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Search</th>
-                                <th scope="col">Details</th>
-                                <th scope="col">Correction</th>
-                                <th scope="col">Source</th>
-                                <th scope="col">Enabled</th>
-                                <th scope="col">Updated</th>
-                                <th scope="col" />
+                                <th scope="col" className="table-col-number">
+                                    #
+                                </th>
+                                <th scope="col" className="table-col-name">
+                                    Name
+                                </th>
+                                <th scope="col" className="table-col-search">
+                                    Search
+                                </th>
+                                <th scope="col" className="table-col-details">
+                                    Details
+                                </th>
+                                <th
+                                    scope="col"
+                                    className="table-col-correction"
+                                >
+                                    Correction
+                                </th>
+                                <th scope="col" className="table-col-source">
+                                    Source
+                                </th>
+                                <th scope="col" className="table-col-enabled">
+                                    Enabled
+                                </th>
+                                <th scope="col" className="table-col-updated">
+                                    Updated
+                                </th>
+                                <th scope="col" className="table-col-delete">
+                                    <span className="fas fa-times hidden" />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>{rules}</tbody>
