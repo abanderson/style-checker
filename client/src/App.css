@@ -50,6 +50,40 @@
     color: #777777;
 }
 
-.hidden {
+.no-display {
     display: none;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.table-col-number {
+    width: 5%;
+}
+
+.table-col-name,
+.table-col-search {
+    width: 15%;
+}
+
+.table-col-source,
+.table-col-correction {
+    width: 10%;
+}
+
+.table-col-details {
+    width: 26%;
+}
+
+.table-col-enabled {
+    width: 7%;
+}
+
+.table-col-updated {
+    width: 10%;
+}
+
+.table-col-delete {
+    width: 2%;
 }
