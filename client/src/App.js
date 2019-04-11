@@ -34,6 +34,16 @@ class App extends Component {
         this.getStyleRules();
     }
 
+    deleteStyleRule(ruleId) {
+        Axios.delete(`/rules/${ruleId}`)
+            .then(() => {
+                this.getStyleRules();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
     render() {
         return (
             <div>
@@ -57,6 +67,7 @@ class App extends Component {
                                 <Rules
                                     {...props}
                                     styleRules={this.state.styleRules}
+                                    deleteRule={this.deleteStyleRule.bind(this)}
                                 />
                             )}
                         />
