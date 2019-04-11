@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class ResultsText extends Component {
-    constructor(props) {
-        super(props);
-
-        this.copyText = this.copyText.bind(this);
-    }
-
     copyText() {
         let textToCopy = document.getElementsByClassName("results-text")[0]
             .innerHTML;
