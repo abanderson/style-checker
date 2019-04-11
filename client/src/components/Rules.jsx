@@ -10,6 +10,8 @@ class Rules extends Component {
             filterString: "",
             filteredRules: []
         };
+
+        this.resetFilter = this.resetFilter.bind(this);
     }
 
     filterRules(filterString) {
@@ -37,9 +39,23 @@ class Rules extends Component {
         });
     }
 
+    resetFilter() {
+        this.setState({
+            filterString: ""
+        });
+    }
+
     mapRules(rulesToMap) {
         const mappedRules = rulesToMap.map((rule, index) => {
-            return <Rule key={index} rule={rule} ruleNum={index + 1} />;
+            return (
+                <Rule
+                    key={index}
+                    rule={rule}
+                    ruleNum={index + 1}
+                    deleteRule={this.props.deleteRule}
+                    resetRuleFilter={this.resetFilter}
+                />
+            );
         });
 
         return mappedRules;
@@ -117,7 +133,8 @@ class Rules extends Component {
 }
 
 Rules.propTypes = {
-    styleRules: PropTypes.array
+    styleRules: PropTypes.array,
+    deleteRule: PropTypes.func
 };
 
 export default Rules;
