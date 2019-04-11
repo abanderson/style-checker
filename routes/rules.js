@@ -32,4 +32,15 @@ router.post("/", function(req, res, next) {
         });
 });
 
+router.delete("/:ruleId", function(req, res, next) {
+    models.Rule.destroy({ where: { id: req.params.ruleId } })
+        .then(result => {
+            res.json(result);
+        })
+        .catch(error => {
+            console.error(error);
+            next(error);
+        });
+});
+
 module.exports = router;
