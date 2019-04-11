@@ -49,7 +49,7 @@ class AddRule extends Component {
         let isValid = this.validateForm();
 
         if (isValid) {
-            Axios.post("http://localhost:3001/rules/", {
+            Axios.post("/rules/", {
                 ruleName: this.state.ruleName,
                 searchRegex: this.state.searchRegex,
                 displayText: this.state.displayText,
