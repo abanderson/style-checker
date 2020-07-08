@@ -32,6 +32,10 @@ router.post("/", function(req, res, next) {
         });
 });
 
+router.put("/:ruleId", function(req, res, next) {
+    // Complete
+});
+
 router.delete("/:ruleId", function(req, res, next) {
     models.Rule.destroy({ where: { id: req.params.ruleId } })
         .then(result => {
