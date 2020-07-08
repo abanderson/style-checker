@@ -33,7 +33,7 @@ class SourceText extends Component {
             <div>
                 <div className="d-flex justify-content-end mb-1">
                     <span className="mr-2 text-clear" onClick={this.clearText}>
-                        <span className="far fa-eraser" />
+                        <span className="fas fa-eraser" />
                         <small className="font-weight-light ml-1">Clear</small>
                     </span>
                 </div>

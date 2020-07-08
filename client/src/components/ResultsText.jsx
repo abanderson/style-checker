@@ -24,7 +24,7 @@ class ResultsText extends Component {
                             className="mr-2 text-copy"
                             onClick={this.copyText}
                         >
-                            <span className="far fa-copy" />
+                            <span className="fas fa-copy" />
                             <small className="font-weight-light ml-1">
                                 Copy
                             </small>
