@@ -24,8 +24,8 @@ const Rule = ({ rule, ruleNum, deleteRule, resetRuleFilter }) => {
     return (
         <tr>
             <th scope="row">{ruleNum}</th>
-            <td>{rule.ruleName}</td>
-            <td>{rule.searchRegex}</td>
+            <td contenteditable="true">{rule.ruleName}</td>
+            <td contenteditable="true">{rule.searchRegex}</td>
             <td>{rule.displayText}</td>
             <td>{rule.correctionRegex}</td>
             <td>{rule.ruleSource}</td>
