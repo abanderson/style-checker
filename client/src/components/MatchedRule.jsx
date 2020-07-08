@@ -70,9 +70,7 @@ class MatchedRule extends Component {
                 <div className="matched-rule">
                     <div className="matched-rule-info">
                         <strong>{this.props.matchedRule.match[0]}</strong>
-                        <br />
-                        {this.props.matchedRule.matchedRuleDisplayText}
-                        <br />
+                        <div dangerouslySetInnerHTML={{ __html: this.props.matchedRule.matchedRuleDisplayText }}></div>
                         <small>
                             {this.props.matchedRule.matchedRuleSource}
                         </small>
