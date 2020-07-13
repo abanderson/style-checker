@@ -5,7 +5,7 @@ const Rule = ({ rule, ruleNum, deleteRule, resetRuleFilter }) => {
     const options = {
         year: "numeric",
         month: "short",
-        day: "numeric"
+        day: "numeric",
     };
 
     const ruleUpdated = new Date(rule.updatedAt).toLocaleString(
@@ -13,7 +13,11 @@ const Rule = ({ rule, ruleNum, deleteRule, resetRuleFilter }) => {
         options
     );
 
-    const handleClick = () => {
+    const handleEdit = () => {
+        console.log("Rule edited.");
+    };
+
+    const handleDelete = () => {
         const response = window.confirm(`Delete rule "${rule.ruleName}"?`);
         if (response) {
             deleteRule(rule.id);
@@ -24,15 +28,18 @@ const Rule = ({ rule, ruleNum, deleteRule, resetRuleFilter }) => {
     return (
         <tr>
             <th scope="row">{ruleNum}</th>
-            <td contenteditable="true">{rule.ruleName}</td>
-            <td contenteditable="true">{rule.searchRegex}</td>
+            <td>{rule.ruleName}</td>
+            <td>{rule.searchRegex}</td>
             <td>{rule.displayText}</td>
             <td>{rule.correctionRegex}</td>
             <td>{rule.ruleSource}</td>
             <td>{rule.isEnabled ? "True" : "False"}</td>
             <td>{ruleUpdated}</td>
-            <td className="delete-rule-control" onClick={handleClick}>
-                <span className="fas fa-times" />
+            <td className="edit-rule-control" onClick={handleEdit}>
+                <span title="Edit rule" className="far fa-edit" />
+            </td>
+            <td className="delete-rule-control" onClick={handleDelete}>
+                <span title="Delete rule" className="fas fa-times" />
             </td>
         </tr>
     );
@@ -42,7 +49,7 @@ Rule.propTypes = {
     rule: PropTypes.object,
     ruleNum: PropTypes.number,
     deleteRule: PropTypes.func,
-    resetRuleFilter: PropTypes.func
+    resetRuleFilter: PropTypes.func,
 };
 
 export default Rule;
