@@ -21,7 +21,8 @@
     background-color: #ffff0c;
 }
 
-.delete-rule-control {
+.delete-rule-control,
+.edit-rule-control {
     cursor: pointer;
 }
 
@@ -46,6 +47,7 @@
 }
 
 .delete-rule-control:hover,
+.edit-rule-control:hover,
 .matched-rule-control:hover {
     color: #777777;
 }
