@@ -8,7 +8,7 @@ class Rules extends Component {
 
         this.state = {
             filterString: "",
-            filteredRules: []
+            filteredRules: [],
         };
 
         this.resetFilter = this.resetFilter.bind(this);
@@ -17,7 +17,7 @@ class Rules extends Component {
     filterRules(filterString) {
         const lowerCaseFilterString = filterString.toLowerCase();
 
-        const filteredRules = this.props.styleRules.filter(rule => {
+        const filteredRules = this.props.styleRules.filter((rule) => {
             return (
                 rule.ruleName.toLowerCase().includes(lowerCaseFilterString) ||
                 rule.searchRegex
@@ -35,13 +35,13 @@ class Rules extends Component {
 
         this.setState({
             filterString: filterString,
-            filteredRules: filteredRules
+            filteredRules: filteredRules,
         });
     }
 
     resetFilter() {
         this.setState({
-            filterString: ""
+            filterString: "",
         });
     }
 
@@ -84,7 +84,7 @@ class Rules extends Component {
                             id="ruleFilter"
                             placeholder="Filter rules"
                             value={this.state.filterString}
-                            onChange={event =>
+                            onChange={(event) =>
                                 this.filterRules(event.target.value)
                             }
                         />
@@ -119,9 +119,14 @@ class Rules extends Component {
                                 <th scope="col" className="table-col-updated">
                                     Updated
                                 </th>
-                                <th scope="col" className="table-col-delete">
-                                    <span className="fas fa-times hidden" />
-                                </th>
+                                <th
+                                    scope="col"
+                                    className="table-col-delete"
+                                ></th>
+                                <th
+                                    scope="col"
+                                    className="table-col-delete"
+                                ></th>
                             </tr>
                         </thead>
                         <tbody>{rules}</tbody>
@@ -134,7 +139,7 @@ class Rules extends Component {
 
 Rules.propTypes = {
     styleRules: PropTypes.array,
-    deleteRule: PropTypes.func
+    deleteRule: PropTypes.func,
 };
 
 export default Rules;
