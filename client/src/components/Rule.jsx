@@ -7,34 +7,28 @@ class Rule extends Component {
 
         this.state = {
             isEditable: false,
-            editFormRuleName: "",
-            editFormSearchRegex: "",
-            editFormDisplayText: "",
-            editFormCorrectionRegex: "",
-            editFormRuleSource: "",
+            ruleName: "",
+            searchRegex: "",
+            displayText: "",
+            correctionRegex: "",
+            ruleSource: "",
             editFormRuleEnabled: true,
         };
 
         this.handleClickDelete = this.handleClickDelete.bind(this);
         this.handleClickEdit = this.handleClickEdit.bind(this);
-        this.handleChangeName = this.handleChangeName.bind(this);
-        this.handleChangeSearchRegex = this.handleChangeSearchRegex.bind(this);
-        this.handleChangeDisplayText = this.handleChangeDisplayText.bind(this);
-        this.handleChangeCorrectionRegex = this.handleChangeCorrectionRegex.bind(
-            this
-        );
-        this.handleChangeRuleSource = this.handleChangeRuleSource.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleChangeRuleEnabled = this.handleChangeRuleEnabled.bind(this);
     }
 
     handleClickEdit() {
         this.setState({
             isEditable: !this.state.isEditable,
-            editFormRuleName: this.props.rule.ruleName,
-            editFormSearchRegex: this.props.rule.searchRegex,
-            editFormDisplayText: this.props.rule.displayText,
-            editFormCorrectionRegex: this.props.rule.correctionRegex,
-            editFormRuleSource: this.props.rule.ruleSource,
+            ruleName: this.props.rule.ruleName,
+            searchRegex: this.props.rule.searchRegex,
+            displayText: this.props.rule.displayText,
+            correctionRegex: this.props.rule.correctionRegex,
+            ruleSource: this.props.rule.ruleSource,
             editFormRuleEnabled: this.props.rule.isEnabled,
         });
     }
@@ -49,31 +43,11 @@ class Rule extends Component {
         }
     }
 
-    handleChangeName(event) {
+    handleChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
         this.setState({
-            editFormRuleName: event.target.value,
-        });
-    }
-
-    handleChangeSearchRegex(event) {
-        this.setState({
-            editFormSearchRegex: event.target.value,
-        });
-    }
-
-    handleChangeDisplayText(event) {
-        this.setState({
-            editFormDisplayText: event.target.value,
-        });
-    }
-    handleChangeCorrectionRegex(event) {
-        this.setState({
-            editFormCorrectionRegex: event.target.value,
-        });
-    }
-    handleChangeRuleSource(event) {
-        this.setState({
-            editFormRuleSource: event.target.value,
+            [name]: value,
         });
     }
 
@@ -95,30 +69,49 @@ class Rule extends Component {
             options
         );
 
-        let name;
+        let ruleName;
         let searchRegex;
         let displayText;
         let ruleEnabled;
+        let correctionRegex;
+        let ruleSource;
         let button1;
         let button2;
 
         if (this.state.isEditable) {
-            name = (
+            ruleName = (
                 <input
-                    value={this.state.editFormRuleName}
-                    onChange={this.handleChangeName}
+                    name="ruleName"
+                    value={this.state.ruleName}
+                    onChange={this.handleChange}
                 />
             );
             searchRegex = (
                 <input
-                    value={this.state.editFormSearchRegex}
-                    onChange={this.handleChangeSearchRegex}
+                    name="searchRegex"
+                    value={this.state.searchRegex}
+                    onChange={this.handleChange}
                 />
             );
             displayText = (
                 <input
-                    value={this.state.editFormDisplayText}
-                    onChange={this.handleChangeDisplayText}
+                    name="displayText"
+                    value={this.state.displayText}
+                    onChange={this.handleChange}
+                />
+            );
+            correctionRegex = (
+                <input
+                    name="correctionRegex"
+                    value={this.state.correctionRegex}
+                    onChange={this.handleChange}
+                />
+            );
+            ruleSource = (
+                <input
+                    name="ruleSource"
+                    value={this.state.ruleSource}
+                    onChange={this.handleChange}
                 />
             );
             ruleEnabled = (
@@ -142,9 +135,11 @@ class Rule extends Component {
                 </td>
             );
         } else {
-            name = <span>{this.props.rule.ruleName}</span>;
+            ruleName = <span>{this.props.rule.ruleName}</span>;
             searchRegex = <span>{this.props.rule.searchRegex}</span>;
             displayText = <span>{this.props.rule.displayText}</span>;
+            correctionRegex = <span>{this.props.rule.correctionRegex}</span>;
+            ruleSource = <span>{this.props.rule.ruleSource}</span>;
             ruleEnabled = (
                 <span>{this.props.rule.isEnabled ? "True" : "False"}</span>
             );
@@ -169,11 +164,11 @@ class Rule extends Component {
         return (
             <tr className={this.state.isEditable ? "table-warning" : ""}>
                 <th scope="row">{this.props.ruleNum}</th>
-                <td>{name}</td>
+                <td>{ruleName}</td>
                 <td>{searchRegex}</td>
                 <td>{displayText}</td>
-                <td>{this.props.rule.correctionRegex}</td>
-                <td>{this.props.rule.ruleSource}</td>
+                <td>{correctionRegex}</td>
+                <td>{ruleSource}</td>
                 <td>{ruleEnabled}</td>
                 <td>{ruleUpdated}</td>
                 {button1}
