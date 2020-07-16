@@ -12,13 +12,13 @@ class Rule extends Component {
             displayText: "",
             correctionRegex: "",
             ruleSource: "",
-            editFormRuleEnabled: true,
+            ruleEnabled: true,
         };
 
         this.handleClickDelete = this.handleClickDelete.bind(this);
         this.handleClickEdit = this.handleClickEdit.bind(this);
+        this.handleClickEditSave = this.handleClickEditSave.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleChangeRuleEnabled = this.handleChangeRuleEnabled.bind(this);
     }
 
     handleClickEdit() {
@@ -29,7 +29,7 @@ class Rule extends Component {
             displayText: this.props.rule.displayText,
             correctionRegex: this.props.rule.correctionRegex,
             ruleSource: this.props.rule.ruleSource,
-            editFormRuleEnabled: this.props.rule.isEnabled,
+            ruleEnabled: this.props.rule.isEnabled,
         });
     }
 
@@ -43,18 +43,55 @@ class Rule extends Component {
         }
     }
 
+    handleClickEditSave() {
+        const updates = {
+            ruleName: this.state.ruleName,
+            searchRegex: this.state.searchRegex,
+            displayText: this.state.displayText,
+            correctionRegex: this.state.correctionRegex,
+            ruleSource: this.state.ruleSource,
+            isEnabled: this.state.ruleEnabled,
+        };
+
+        let isValid = this.props.isValidRule(updates);
+
+        if (isValid) {
+            this.props.updateRule(this.props.rule.id, updates);
+
+            this.setState({
+                isEditable: false,
+            });
+        }
+    }
+
     handleChange(event) {
         const name = event.target.name;
-        const value = event.target.value;
+        const value =
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value;
         this.setState({
             [name]: value,
         });
     }
 
-    handleChangeRuleEnabled(event) {
-        this.setState({
-            editFormRuleEnabled: event.target.value,
-        });
+    validateEdit() {
+        let isValid = true;
+        let errorMessage = "";
+
+        if (this.state.searchRegex === "") {
+            isValid = false;
+            errorMessage = "Field cannot be blank";
+        } else {
+            this.props.styleRules.forEach((rule) => {
+                console.log(rule.ruleName);
+            });
+        }
+
+        if (!isValid) {
+            console.log(errorMessage);
+        }
+        return isValid;
     }
 
     render() {
@@ -116,21 +153,25 @@ class Rule extends Component {
             );
             ruleEnabled = (
                 <input
+                    name="ruleEnabled"
                     type="checkbox"
-                    checked={this.state.editFormRuleEnabled}
-                    onChange={this.handleChangeRuleEnabled}
+                    checked={this.state.ruleEnabled}
+                    onChange={this.handleChange}
                 />
             );
             button1 = (
                 <td
                     className="edit-rule-control"
-                    onClick={this.handleClickEdit}
+                    onClick={this.handleClickEditSave}
                 >
                     <span title="Save rule" className="fas fa-check" />
                 </td>
             );
             button2 = (
-                <td className="delete-rule-control">
+                <td
+                    className="delete-rule-control"
+                    onClick={this.handleClickEdit}
+                >
                     <span title="Cancel edit" className="far fa-window-close" />
                 </td>
             );
@@ -182,6 +223,7 @@ Rule.propTypes = {
     rule: PropTypes.object,
     ruleNum: PropTypes.number,
     deleteRule: PropTypes.func,
+    updateRule: PropTypes.func,
     resetRuleFilter: PropTypes.func,
 };
 
