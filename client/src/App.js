@@ -13,19 +13,19 @@ class App extends Component {
 
         this.state = {
             styleRules: [],
-            numStyleRules: 0
+            numStyleRules: 0,
         };
     }
 
     getStyleRules() {
         Axios.get("/rules/")
-            .then(response => {
+            .then((response) => {
                 this.setState({
                     styleRules: response.data,
-                    numStyleRules: response.data.length
+                    numStyleRules: response.data.length,
                 });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
             });
     }
@@ -39,7 +39,17 @@ class App extends Component {
             .then(() => {
                 this.getStyleRules();
             })
-            .catch(error => {
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    updateStyleRule(ruleId, updates) {
+        Axios.put(`/rules/${ruleId}`, updates)
+            .then(() => {
+                this.getStyleRules();
+            })
+            .catch((error) => {
                 console.error(error);
             });
     }
@@ -53,7 +63,7 @@ class App extends Component {
                         <Route
                             exact
                             path="/"
-                            render={props => (
+                            render={(props) => (
                                 <StyleChecker
                                     {...props}
                                     styleRules={this.state.styleRules}
@@ -63,11 +73,12 @@ class App extends Component {
                         <Route
                             exact
                             path="/rules"
-                            render={props => (
+                            render={(props) => (
                                 <Rules
                                     {...props}
                                     styleRules={this.state.styleRules}
                                     deleteRule={this.deleteStyleRule.bind(this)}
+                                    updateRule={this.updateStyleRule.bind(this)}
                                 />
                             )}
                         />
@@ -75,7 +86,7 @@ class App extends Component {
                         <Route
                             exact
                             path="/add-rule"
-                            render={props => (
+                            render={(props) => (
                                 <AddRule
                                     {...props}
                                     styleRules={this.state.styleRules}
