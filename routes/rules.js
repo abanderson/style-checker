@@ -33,18 +33,17 @@ router.post("/", function (req, res, next) {
 });
 
 router.put("/:ruleId", function (req, res, next) {
-    models.rule
-        .update(
-            {
-                ruleName: req.body.ruleName,
-                searchRegex: req.body.searchRegex,
-                displayText: req.body.displayText,
-                correctionRegex: req.body.correctionRegex,
-                ruleSource: req.body.ruleSource,
-                isEnabled: req.body.isEnabled,
-            },
-            { where: { id: req.params.ruleId } }
-        )
+    models.Rule.update(
+        {
+            ruleName: req.body.ruleName,
+            searchRegex: req.body.searchRegex,
+            displayText: req.body.displayText,
+            correctionRegex: req.body.correctionRegex,
+            ruleSource: req.body.ruleSource,
+            isEnabled: req.body.isEnabled,
+        },
+        { where: { id: req.params.ruleId } }
+    )
         .then((result) => {
             res.json(result);
         })
