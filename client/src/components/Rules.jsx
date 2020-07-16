@@ -45,6 +45,27 @@ class Rules extends Component {
         });
     }
 
+    isValidRule(ruleProperties) {
+        let isValid = true;
+        let errorMessage = "";
+
+        console.log(ruleProperties.searchRegex);
+
+        if (ruleProperties.searchRegex === "") {
+            isValid = false;
+            errorMessage = "Field cannot be blank";
+        } else {
+            this.props.styleRules.forEach((rule) => {
+                console.log(rule.ruleName);
+            });
+        }
+
+        if (!isValid) {
+            console.log(errorMessage);
+        }
+        return isValid;
+    }
+
     mapRules(rulesToMap) {
         const mappedRules = rulesToMap.map((rule, index) => {
             return (
@@ -53,7 +74,9 @@ class Rules extends Component {
                     rule={rule}
                     ruleNum={index + 1}
                     deleteRule={this.props.deleteRule}
+                    updateRule={this.props.updateRule}
                     resetRuleFilter={this.resetFilter}
+                    isValidRule={this.isValidRule.bind(this)}
                 />
             );
         });
@@ -140,6 +163,7 @@ class Rules extends Component {
 Rules.propTypes = {
     styleRules: PropTypes.array,
     deleteRule: PropTypes.func,
+    updateRule: PropTypes.func,
 };
 
 export default Rules;
