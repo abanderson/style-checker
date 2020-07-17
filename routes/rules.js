@@ -4,7 +4,9 @@ const models = require("../models");
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-    models.Rule.findAll()
+    models.Rule.findAll({
+        order: [["ruleName", "ASC"]],
+    })
         .then((rules) => {
             res.json(rules);
         })
