@@ -49,19 +49,24 @@ class Rules extends Component {
         let isValid = true;
         let errorMessage = "";
 
-        console.log(ruleProperties.searchRegex);
-
         if (ruleProperties.searchRegex === "") {
             isValid = false;
             errorMessage = "Field cannot be blank";
         } else {
             this.props.styleRules.forEach((rule) => {
-                console.log(rule.ruleName);
+                if (
+                    ruleProperties.ruleId !== rule.id &&
+                    ruleProperties.searchRegex === rule.searchRegex
+                ) {
+                    errorMessage = "Search regex already exists in database.";
+                    isValid = false;
+                }
             });
         }
 
         if (!isValid) {
             console.log(errorMessage);
+            window.alert(errorMessage);
         }
         return isValid;
     }
@@ -101,16 +106,29 @@ class Rules extends Component {
                         <label className="sr-only" htmlFor="ruleFilter">
                             Filter
                         </label>
-                        <input
-                            type="text"
-                            className="form-control mb-2 mr-sm-2"
-                            id="ruleFilter"
-                            placeholder="Filter rules"
-                            value={this.state.filterString}
-                            onChange={(event) =>
-                                this.filterRules(event.target.value)
-                            }
-                        />
+                        <div class="input-group mb-2 mr-sm-2">
+                            <input
+                                type="text"
+                                className="form-control border border-secondary"
+                                id="ruleFilter"
+                                placeholder="Filter rules"
+                                value={this.state.filterString}
+                                onChange={(event) =>
+                                    this.filterRules(event.target.value)
+                                }
+                            />
+                            <div className="input-group-append">
+                                <button
+                                    className="btn btn-outline-secondary"
+                                    type="button"
+                                    id="clearFilter"
+                                    onClick={this.resetFilter}
+                                    title="Clear filter"
+                                >
+                                    <span className="fas fa-times"></span>
+                                </button>
+                            </div>
+                        </div>
                     </form>
                     <table className="table small">
                         <thead>
@@ -142,10 +160,7 @@ class Rules extends Component {
                                 <th scope="col" className="table-col-updated">
                                     Updated
                                 </th>
-                                <th
-                                    scope="col"
-                                    className="table-col-delete"
-                                ></th>
+                                <th scope="col" className="table-col-edit"></th>
                                 <th
                                     scope="col"
                                     className="table-col-delete"
