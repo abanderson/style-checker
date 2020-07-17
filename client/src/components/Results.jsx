@@ -9,7 +9,7 @@ const Results = ({
     highlightedText,
     setHighlightedText,
     setDismissedRule,
-    correctRule
+    correctRule,
 }) => {
     return (
         <div>
@@ -39,7 +39,7 @@ Results.propTypes = {
     highlightedText: PropTypes.object,
     setHighlightedText: PropTypes.func,
     setDismissedRule: PropTypes.func,
-    correctRule: PropTypes.func
+    correctRule: PropTypes.func,
 };
 
 export default Results;
