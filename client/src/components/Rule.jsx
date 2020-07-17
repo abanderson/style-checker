@@ -45,6 +45,7 @@ class Rule extends Component {
 
     handleClickEditSave() {
         const updates = {
+            ruleId: this.props.rule.id,
             ruleName: this.state.ruleName,
             searchRegex: this.state.searchRegex,
             displayText: this.state.displayText,
@@ -73,25 +74,6 @@ class Rule extends Component {
         this.setState({
             [name]: value,
         });
-    }
-
-    validateEdit() {
-        let isValid = true;
-        let errorMessage = "";
-
-        if (this.state.searchRegex === "") {
-            isValid = false;
-            errorMessage = "Field cannot be blank";
-        } else {
-            this.props.styleRules.forEach((rule) => {
-                console.log(rule.ruleName);
-            });
-        }
-
-        if (!isValid) {
-            console.log(errorMessage);
-        }
-        return isValid;
     }
 
     render() {
@@ -205,13 +187,13 @@ class Rule extends Component {
         return (
             <tr className={this.state.isEditable ? "table-warning" : ""}>
                 <th scope="row">{this.props.ruleNum}</th>
-                <td>{ruleName}</td>
-                <td>{searchRegex}</td>
-                <td>{displayText}</td>
-                <td>{correctionRegex}</td>
-                <td>{ruleSource}</td>
-                <td>{ruleEnabled}</td>
-                <td>{ruleUpdated}</td>
+                <td className="table-col-name">{ruleName}</td>
+                <td className="table-col-search">{searchRegex}</td>
+                <td className="table-col-details">{displayText}</td>
+                <td className="table-col-correction">{correctionRegex}</td>
+                <td className="table-col-source">{ruleSource}</td>
+                <td className="table-col-enabled">{ruleEnabled}</td>
+                <td className="table-col-updated">{ruleUpdated}</td>
                 {button1}
                 {button2}
             </tr>
