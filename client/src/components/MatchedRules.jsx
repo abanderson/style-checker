@@ -6,10 +6,10 @@ const MatchedRules = ({
     ruleMatches,
     setHighlightedText,
     setDismissedRule,
-    correctRule
+    correctRule,
 }) => {
     const displayedRules = ruleMatches
-        .filter(match => match.isDisplayed)
+        .filter((match) => match.isDisplayed)
         .map((rule, index) => {
             return (
                 <MatchedRule
@@ -30,7 +30,7 @@ const MatchedRules = ({
                 {displayedRules.length === 1 ? "match" : "matches"}
                 {" found"}
             </h5>
-            <ul className="list-group">{displayedRules}</ul>
+            <ul className="list-group matched-rules">{displayedRules}</ul>
         </div>
     );
 };
@@ -39,7 +39,7 @@ MatchedRules.propTypes = {
     ruleMatches: PropTypes.array,
     setHighlightedText: PropTypes.func,
     setDismissedRule: PropTypes.func,
-    correctRule: PropTypes.func
+    correctRule: PropTypes.func,
 };
 
 export default MatchedRules;
