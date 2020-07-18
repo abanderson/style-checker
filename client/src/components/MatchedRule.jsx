@@ -7,7 +7,7 @@ class MatchedRule extends Component {
 
         this.state = {
             className: "list-group-item pr-0",
-            isDismissed: false
+            isDismissed: false,
         };
 
         this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -31,7 +31,7 @@ class MatchedRule extends Component {
         this.props.setHighlightedText({
             preText: preText,
             text: this.props.matchedRule.match[0],
-            postText: postText
+            postText: postText,
         });
     }
 
@@ -40,7 +40,7 @@ class MatchedRule extends Component {
         this.props.setHighlightedText({
             preText: "",
             text: "",
-            postText: ""
+            postText: "",
         });
     }
 
@@ -55,7 +55,7 @@ class MatchedRule extends Component {
     render() {
         let correctControlStyle = "";
 
-        if (this.props.matchedRule.matchedRuleCorrectionText === "") {
+        if (!this.props.matchedRule.matchedRuleCorrectionText) {
             correctControlStyle = "matched-rule-control no-display";
         } else {
             correctControlStyle = "matched-rule-control";
@@ -70,7 +70,12 @@ class MatchedRule extends Component {
                 <div className="matched-rule">
                     <div className="matched-rule-info">
                         <strong>{this.props.matchedRule.match[0]}</strong>
-                        <div dangerouslySetInnerHTML={{ __html: this.props.matchedRule.matchedRuleDisplayText }}></div>
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: this.props.matchedRule
+                                    .matchedRuleDisplayText,
+                            }}
+                        ></div>
                         <small>
                             {this.props.matchedRule.matchedRuleSource}
                         </small>
@@ -94,7 +99,7 @@ MatchedRule.propTypes = {
     setHighlightedText: PropTypes.func,
     setDismissedRule: PropTypes.func,
     dataId: PropTypes.number,
-    correctRule: PropTypes.func
+    correctRule: PropTypes.func,
 };
 
 export default MatchedRule;

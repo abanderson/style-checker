@@ -12,9 +12,9 @@ class StyleChecker extends Component {
             highlightedText: {
                 preText: "",
                 text: "",
-                postText: ""
+                postText: "",
             },
-            ruleMatches: []
+            ruleMatches: [],
         };
 
         this.handleTextInput = this.handleTextInput.bind(this);
@@ -26,7 +26,7 @@ class StyleChecker extends Component {
 
     handleTextInput(textInput) {
         this.setState({
-            editedText: textInput
+            editedText: textInput,
         });
 
         this.checkStyle(textInput);
@@ -37,8 +37,8 @@ class StyleChecker extends Component {
             highlightedText: {
                 preText: highlightedText.preText,
                 text: highlightedText.text,
-                postText: highlightedText.postText
-            }
+                postText: highlightedText.postText,
+            },
         });
     }
 
@@ -56,7 +56,7 @@ class StyleChecker extends Component {
                         matchedRuleDisplayText:
                             ruleMatch.matchedRuleDisplayText,
                         matchedRuleSource: ruleMatch.matchedRuleSource,
-                        isDisplayed: false
+                        isDisplayed: false,
                     };
                 } else {
                     return ruleMatch;
@@ -67,9 +67,9 @@ class StyleChecker extends Component {
             highlightedText: {
                 preText: "",
                 text: "",
-                postText: ""
+                postText: "",
             },
-            ruleMatches: newRuleMatches
+            ruleMatches: newRuleMatches,
         });
     }
 
@@ -87,8 +87,8 @@ class StyleChecker extends Component {
             highlightedText: {
                 preText: "",
                 text: "",
-                postText: ""
-            }
+                postText: "",
+            },
         });
         this.checkStyle(editedText);
     }
@@ -96,12 +96,12 @@ class StyleChecker extends Component {
     checkStyle(sourceText) {
         // console.clear();
         this.setState({
-            ruleMatches: []
+            ruleMatches: [],
         });
         let matches = [];
         let matchId = 0;
 
-        this.props.styleRules.forEach(rule => {
+        this.props.styleRules.forEach((rule) => {
             if (rule.isEnabled) {
                 let re = new RegExp(rule.searchRegex, "g");
                 let match;
@@ -124,7 +124,7 @@ class StyleChecker extends Component {
                             rule
                         ),
                         matchedRuleSource: rule.ruleSource,
-                        isDisplayed: true
+                        isDisplayed: true,
                     });
                     matchId++;
                 }
@@ -132,7 +132,7 @@ class StyleChecker extends Component {
         });
 
         this.setState({
-            ruleMatches: matches
+            ruleMatches: matches,
         });
     }
 
@@ -155,10 +155,12 @@ class StyleChecker extends Component {
             correctionText = matchedStyleRule.correctionRegex;
         } else {
             for (let i = 1; i < reMatch.length; i++) {
-                correctionText = correctionText.replace(
-                    `$${i}`,
-                    `${reMatch[i]}`
-                );
+                if (correctionText) {
+                    correctionText = correctionText.replace(
+                        `$${i}`,
+                        `${reMatch[i]}`
+                    );
+                }
             }
         }
 
@@ -185,7 +187,7 @@ class StyleChecker extends Component {
 }
 
 StyleChecker.propTypes = {
-    styleRules: PropTypes.array
+    styleRules: PropTypes.array,
 };
 
 export default StyleChecker;
