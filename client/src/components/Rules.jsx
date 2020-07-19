@@ -26,9 +26,10 @@ class Rules extends Component {
                 rule.displayText
                     .toLowerCase()
                     .includes(lowerCaseFilterString) ||
-                rule.correctionRegex
-                    .toLowerCase()
-                    .includes(lowerCaseFilterString) ||
+                (rule.correctionRegex &&
+                    rule.correctionRegex
+                        .toLowerCase()
+                        .includes(lowerCaseFilterString)) ||
                 rule.ruleSource.toLowerCase().includes(lowerCaseFilterString)
             );
         });
@@ -106,12 +107,12 @@ class Rules extends Component {
                         <label className="sr-only" htmlFor="ruleFilter">
                             Filter
                         </label>
-                        <div class="input-group mb-2 mr-sm-2">
+                        <div className="input-group mb-2 mr-sm-2">
                             <input
                                 type="text"
                                 className="form-control border border-secondary"
                                 id="ruleFilter"
-                                placeholder="Filter rules"
+                                placeholder="Filter rules..."
                                 value={this.state.filterString}
                                 onChange={(event) =>
                                     this.filterRules(event.target.value)
