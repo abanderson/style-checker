@@ -24,6 +24,7 @@ class App extends Component {
                     styleRules: response.data,
                     numStyleRules: response.data.length,
                 });
+                this.filterStyleRulesForSafari();
             })
             .catch((error) => {
                 console.error(error);
@@ -32,6 +33,7 @@ class App extends Component {
 
     componentDidMount() {
         this.getStyleRules();
+        // this.filterStyleRulesForSafari();
     }
 
     deleteStyleRule(ruleId) {
@@ -52,6 +54,29 @@ class App extends Component {
             .catch((error) => {
                 console.error(error);
             });
+    }
+
+    filterStyleRulesForSafari() {
+        if (navigator.userAgent.indexOf("Safari") !== -1) {
+            console.log(
+                "Safari detected. Filtering unsupported style rules..."
+            );
+            const filteredRules = this.state.styleRules.filter((rule) => {
+                return !(
+                    rule.searchRegex.includes("(?<!") ||
+                    rule.searchRegex.includes("(?<=")
+                );
+            });
+            console.log(
+                `Filtered ${
+                    this.state.styleRules.length - filteredRules.length
+                } rules.`
+            );
+            this.setState({
+                styleRules: filteredRules,
+                numStyleRules: filteredRules.length,
+            });
+        }
     }
 
     render() {
