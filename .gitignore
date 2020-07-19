@@ -64,3 +64,4 @@ typings/
 config/
 
 .eslintrc*
+.DS_Store
