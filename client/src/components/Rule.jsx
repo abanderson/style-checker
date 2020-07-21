@@ -21,6 +21,12 @@ class Rule extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    componentDidUpdate() {
+        if (this.state.isEditable) {
+            document.getElementById(this.props.ruleNum).focus();
+        }
+    }
+
     handleClickEdit() {
         this.setState({
             isEditable: !this.state.isEditable,
@@ -101,6 +107,7 @@ class Rule extends Component {
             ruleName = (
                 <input
                     name="ruleName"
+                    id={this.props.ruleNum}
                     value={this.state.ruleName}
                     onChange={this.handleChange}
                 />
