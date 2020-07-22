@@ -13,6 +13,7 @@ class Rule extends Component {
             correctionRegex: "",
             ruleSource: "",
             ruleEnabled: true,
+            ruleNameFocusSet: false,
         };
 
         this.handleClickDelete = this.handleClickDelete.bind(this);
@@ -22,8 +23,11 @@ class Rule extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.isEditable) {
+        if (this.state.isEditable && this.state.ruleNameFocusSet) {
             document.getElementById(this.props.ruleNum).focus();
+            this.setState({
+                ruleNameFocusSet: false,
+            });
         }
     }
 
@@ -36,6 +40,7 @@ class Rule extends Component {
             correctionRegex: this.props.rule.correctionRegex,
             ruleSource: this.props.rule.ruleSource,
             ruleEnabled: this.props.rule.isEnabled,
+            ruleNameFocusSet: true,
         });
     }
 
@@ -58,6 +63,7 @@ class Rule extends Component {
             correctionRegex: this.state.correctionRegex,
             ruleSource: this.state.ruleSource,
             isEnabled: this.state.ruleEnabled,
+            ruleNameFocusSet: false,
         };
 
         let isValid = this.props.isValidRule(updates);
