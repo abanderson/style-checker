@@ -32,15 +32,15 @@ class ResultsText extends Component {
                     </div>
                 </div>
                 {this.props.highlightedText.text !== "" ? (
-                    <p className="results-text">
+                    <pre className="results-text">
                         {this.props.highlightedText.preText}
                         <span className="highlighted-text">
                             {this.props.highlightedText.text}
                         </span>
                         {this.props.highlightedText.postText}
-                    </p>
+                    </pre>
                 ) : (
-                    <p className="results-text">{this.props.editedText}</p>
+                    <pre className="results-text">{this.props.editedText}</pre>
                 )}
             </div>
         );
