@@ -169,18 +169,16 @@ class StyleChecker extends Component {
 
     render() {
         return (
-            <div className="row mt-3 mb-3 text-entry">
-                <div className="col">
-                    <SourceText onTextInput={this.handleTextInput} />
-                    <Results
-                        ruleMatches={this.state.ruleMatches}
-                        editedText={this.state.editedText}
-                        highlightedText={this.state.highlightedText}
-                        setHighlightedText={this.handleHighlightedText}
-                        setDismissedRule={this.handleDismissRule}
-                        correctRule={this.handleCorrectRule}
-                    />
-                </div>
+            <div className="source-results-container">
+                <SourceText onTextInput={this.handleTextInput} />
+                <Results
+                    ruleMatches={this.state.ruleMatches}
+                    editedText={this.state.editedText}
+                    highlightedText={this.state.highlightedText}
+                    setHighlightedText={this.handleHighlightedText}
+                    setDismissedRule={this.handleDismissRule}
+                    correctRule={this.handleCorrectRule}
+                />
             </div>
         );
     }
