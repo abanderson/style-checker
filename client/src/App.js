@@ -81,46 +81,44 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="content-wrapper">
                 <Navbar numStyleRules={this.state.numStyleRules} />
-                <div className="container">
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={(props) => (
-                                <StyleChecker
-                                    {...props}
-                                    styleRules={this.state.styleRules}
-                                />
-                            )}
-                        />
-                        <Route
-                            exact
-                            path="/rules"
-                            render={(props) => (
-                                <Rules
-                                    {...props}
-                                    styleRules={this.state.styleRules}
-                                    deleteRule={this.deleteStyleRule.bind(this)}
-                                    updateRule={this.updateStyleRule.bind(this)}
-                                />
-                            )}
-                        />
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={(props) => (
+                            <StyleChecker
+                                {...props}
+                                styleRules={this.state.styleRules}
+                            />
+                        )}
+                    />
+                    <Route
+                        exact
+                        path="/rules"
+                        render={(props) => (
+                            <Rules
+                                {...props}
+                                styleRules={this.state.styleRules}
+                                deleteRule={this.deleteStyleRule.bind(this)}
+                                updateRule={this.updateStyleRule.bind(this)}
+                            />
+                        )}
+                    />
 
-                        <Route
-                            exact
-                            path="/add-rule"
-                            render={(props) => (
-                                <AddRule
-                                    {...props}
-                                    styleRules={this.state.styleRules}
-                                    onAddRule={this.getStyleRules.bind(this)}
-                                />
-                            )}
-                        />
-                    </Switch>
-                </div>
+                    <Route
+                        exact
+                        path="/add-rule"
+                        render={(props) => (
+                            <AddRule
+                                {...props}
+                                styleRules={this.state.styleRules}
+                                onAddRule={this.getStyleRules.bind(this)}
+                            />
+                        )}
+                    />
+                </Switch>
             </div>
         );
     }

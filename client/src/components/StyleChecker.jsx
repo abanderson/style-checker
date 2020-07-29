@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SourceText from "./SourceText";
 import Results from "./Results";
+import MatchedRules from "./MatchedRules";
 import PropTypes from "prop-types";
 
 class StyleChecker extends Component {
@@ -169,18 +170,20 @@ class StyleChecker extends Component {
 
     render() {
         return (
-            <div className="row mt-3 mb-3 text-entry">
-                <div className="col">
+            <div className="main-container">
+                <div className="source-results-container">
                     <SourceText onTextInput={this.handleTextInput} />
                     <Results
-                        ruleMatches={this.state.ruleMatches}
                         editedText={this.state.editedText}
                         highlightedText={this.state.highlightedText}
-                        setHighlightedText={this.handleHighlightedText}
-                        setDismissedRule={this.handleDismissRule}
-                        correctRule={this.handleCorrectRule}
                     />
                 </div>
+                <MatchedRules
+                    ruleMatches={this.state.ruleMatches}
+                    setHighlightedText={this.handleHighlightedText}
+                    setDismissedRule={this.handleDismissRule}
+                    correctRule={this.handleCorrectRule}
+                />
             </div>
         );
     }

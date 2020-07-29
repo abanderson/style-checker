@@ -56,40 +56,51 @@ class MatchedRule extends Component {
         let correctControlStyle = "";
 
         if (!this.props.matchedRule.matchedRuleCorrectionText) {
-            correctControlStyle = "matched-rule-control no-display";
+            correctControlStyle = "rule-match-control no-display";
         } else {
-            correctControlStyle = "matched-rule-control";
+            correctControlStyle = "rule-match-control";
         }
 
         return (
-            <li
-                className={this.state.className}
+            <div
+                className="rule-match"
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
             >
-                <div className="matched-rule">
-                    <div className="matched-rule-info">
-                        <strong>{this.props.matchedRule.match[0]}</strong>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: this.props.matchedRule
-                                    .matchedRuleDisplayText,
-                            }}
-                        ></div>
-                        <small>
-                            {this.props.matchedRule.matchedRuleSource}
-                        </small>
+                <div className="rule-match-info">
+                    <div className="rule-match-heading">
+                        {this.props.matchedRule.match[0]}
                     </div>
-                    <div className="matched-rule-controls">
-                        <div
-                            className={correctControlStyle}
-                            onClick={this.handleClickCorrect}
-                        >
-                            <span className="fas fa-check" />
-                        </div>
+                    <div
+                        className="rule-match-content"
+                        dangerouslySetInnerHTML={{
+                            __html: this.props.matchedRule
+                                .matchedRuleDisplayText,
+                        }}
+                    ></div>
+                    <div className="rule-match-source">
+                        {this.props.matchedRule.matchedRuleSource}
                     </div>
                 </div>
-            </li>
+                <div
+                    className="rule-match-control"
+                    className={correctControlStyle}
+                    onClick={this.handleClickCorrect}
+                >
+                    <svg
+                        width="1.75rem"
+                        height="1.75rem"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M10.97 4.97a.75.75 0 0 1 1.071 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.236.236 0 0 1 .02-.022z"
+                        />
+                    </svg>
+                </div>
+            </div>
         );
     }
 }
