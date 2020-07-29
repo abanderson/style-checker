@@ -125,6 +125,7 @@ pre {
 .rule-matches-container {
     flex: 100%;
     padding: 0 var(--padding-smaller);
+    overflow: auto;
 }
 
 .results-container {
@@ -234,6 +235,10 @@ pre {
 
     h1 {
         font-size: var(--font-size-larger);
+    }
+
+    .main-container {
+        flex-wrap: nowrap;
     }
 
     .source-results-container {
