@@ -83,7 +83,6 @@ class MatchedRule extends Component {
                     </div>
                 </div>
                 <div
-                    className="rule-match-control"
                     className={correctControlStyle}
                     onClick={this.handleClickCorrect}
                 >
