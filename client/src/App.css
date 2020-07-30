@@ -87,6 +87,50 @@ pre {
     color: var(--secondary-text);
 }
 
+table {
+    padding: var(--padding-default);
+    width: 100%;
+    border-spacing: 0;
+}
+
+table caption {
+    text-align: left;
+    font-size: var(--font-size-larger);
+    color: var(--green3);
+    margin: var(--margin-default) 0 0 var(--margin-default);
+}
+
+th,
+td {
+    padding: var(--padding-smaller);
+}
+
+th {
+    border-bottom: 2px solid var(--green2);
+}
+
+td {
+    border-bottom: 1px dashed var(--green2);
+    text-align: center;
+    font-size: var(--font-size-smaller);
+}
+
+tr:last-child td {
+    border: none;
+}
+
+tr:hover {
+    border: 1px solid var(--green2);
+    background-color: #eee;
+}
+
+table input {
+    width: 100%;
+    padding: var(--padding-small);
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
 #root,
 .content-wrapper {
     height: 100%;
@@ -230,6 +274,57 @@ pre {
     display: none;
 }
 
+.table-heading {
+    color: var(--green1);
+    /*background-color: var(--light1);*/
+    /*padding: 0.2rem 0.75rem;*/
+    /*border-radius: 8px;*/
+    /*font-weight: 500;*/
+}
+
+.table-number {
+    /*text-align: right;*/
+    font-weight: bold;
+}
+
+.table-edit {
+    background-color: var(--light1);
+}
+
+.table-rule-source {
+    min-width: 130px;
+}
+
+.table-rule-updated {
+    min-width: 100px;
+}
+
+.table-icon {
+    cursor: pointer;
+    text-align: center;
+}
+
+.rules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-default) var(--padding-default)
+        var(--padding-smaller) var(--padding-default);
+}
+
+.page-title {
+    font-size: var(--font-size-larger);
+    font-weight: 200;
+}
+
+.input-filter {
+    width: 150px;
+    padding: var(--padding-smaller);
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    line-height: 1.5;
+}
+
 @media (min-width: 400px) {
     header {
         font-size: var(--font-size-regular);
@@ -239,6 +334,19 @@ pre {
     .header-text {
         color: var(--light1);
         font-size: var(--font-size-larger);
+    }
+
+    .rules-header {
+        padding: var(--padding-smaller) var(--padding-smaller)
+            var(--padding-small) var(--padding-smaller);
+    }
+
+    .input-filter {
+        width: 250px;
+    }
+
+    .page-title {
+        font-size: var(--font-size-large);
     }
 }
 
