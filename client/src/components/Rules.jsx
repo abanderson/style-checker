@@ -83,6 +83,8 @@ class Rules extends Component {
                     updateRule={this.props.updateRule}
                     resetRuleFilter={this.resetFilter}
                     isValidRule={this.isValidRule.bind(this)}
+                    filterString={this.state.filterString}
+                    filterRules={this.filterRules.bind(this)} /* New */
                 />
             );
         });
@@ -103,26 +105,41 @@ class Rules extends Component {
             <div>
                 <div className="rules-header">
                     <h1 className="page-title">Rules</h1>
-                    <input
-                        type="text"
-                        id="ruleFilter"
-                        className="input-filter"
-                        name=""
-                        placeholder="Filter rules..."
-                        value={this.state.filterString}
-                        onChange={(event) =>
-                            this.filterRules(event.target.value)
-                        }
-                    />
-                    <button
-                        className="btn btn-outline-secondary"
-                        type="button"
-                        id="clearFilter"
-                        onClick={this.resetFilter}
-                        title="Clear filter"
-                    >
-                        ICON
-                    </button>
+                    <div className="rule-filter">
+                        <input
+                            type="text"
+                            id="ruleFilter"
+                            className="input-filter"
+                            name=""
+                            placeholder="Filter rules..."
+                            value={this.state.filterString}
+                            onChange={(event) =>
+                                this.filterRules(event.target.value)
+                            }
+                        />
+                        <span
+                            className="input-filter-clear"
+                            title="Clear filter"
+                            onClick={this.resetFilter}
+                        >
+                            <svg
+                                width="1.5em"
+                                height="1.5em"
+                                viewBox="0 -1 16 16"
+                                fill="#115937"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"
+                                />
+                            </svg>
+                        </span>
+                    </div>
                 </div>
                 <div style={{ overflowX: "auto" }}>
                     <table>
