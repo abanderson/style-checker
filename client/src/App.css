@@ -124,6 +124,10 @@ tr:hover {
     background-color: #eee;
 }
 
+thead tr:hover {
+    background-color: white;
+}
+
 table input {
     width: 100%;
     padding: var(--padding-small);
@@ -310,11 +314,17 @@ table input {
     align-items: center;
     padding: var(--padding-default) var(--padding-default)
         var(--padding-smaller) var(--padding-default);
+    margin-right: var(--margin-smaller);
 }
 
 .page-title {
     font-size: var(--font-size-larger);
     font-weight: 200;
+}
+
+.rule-filter {
+    display: flex;
+    align-items: center;
 }
 
 .input-filter {
@@ -323,6 +333,13 @@ table input {
     border: 1px solid lightgrey;
     border-radius: 4px;
     line-height: 1.5;
+}
+
+.input-filter-clear {
+    cursor: pointer;
+    /*padding: var(--padding-smaller);*/
+    margin-left: -30px;
+    background-color: white;
 }
 
 @media (min-width: 400px) {
@@ -339,6 +356,7 @@ table input {
     .rules-header {
         padding: var(--padding-smaller) var(--padding-smaller)
             var(--padding-small) var(--padding-smaller);
+        margin-right: var(--margin-small);
     }
 
     .input-filter {
