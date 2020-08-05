@@ -13,6 +13,8 @@
     --margin-default: 1rem;
     --margin-smaller: 0.5rem;
     --margin-small: 0.25rem;
+    --margin-larger: 1.15rem;
+    --margin-large: 1.5rem;
 
     --font-family-default: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -296,12 +298,17 @@ table input {
 }
 
 .add-rule-container {
-    width: 600px;
-    border: 1px solid lightgrey;
+    width: 100%;
+    border: 1px solid var(--green3);
+    border-radius: 4px;
+    background-color: #fafafa;
+    margin: var(--margin-default);
+    /*box-shadow: 3px 3px 10px lightgrey;*/
 }
 
 .centered {
-    align-items: center;
+    /*align-items: center;*/
+    align-items: flex-start;
     justify-content: center;
 }
 
@@ -314,37 +321,47 @@ table input {
     margin-bottom: var(--margin-small);
 }
 
-/*.form-section input {
-    padding: var(--padding-smaller);
-    border: 1px solid lightgrey;
-    border-radius: 4px;
-    width: 100%;
-}*/
-
 form button {
-    margin: var(--margin-default);
+    margin: 0 var(--margin-default) var(--margin-default) var(--margin-default);
+    padding: var(--padding-smaller) var(--padding-default);
+    border-radius: 4px;
+    border: 1px solid var(--green2);
+    background-color: var(--green2);
+    color: var(--light1);
+}
 
+form button:hover {
+    border: 1px solid var(--green1);
+    cursor: pointer;
+}
+
+form button:active {
+    background-color: var(--green1);
 }
 
 .form-text-input {
-     padding: var(--padding-smaller);
-    border: 1px solid lightgrey;
+    padding: var(--padding-smaller);
+    border: 1px solid var(--light1);
     border-radius: 4px;
     width: 100%;
 }
 
-.form-checkbox {
-    display: inline;
-    /*width: 25%;*/
-    color: red;
-    background-color: red;
+.form-text-input:focus {
+    border: 1px solid lightgrey;
 }
 
 .form-error-text {
     font-size: var(--font-size-smaller);
-    /*border: 1px solid black;*/
     margin: 0.25rem 0.5rem 0 0.5rem;
     color: red;
+}
+
+.margin-left-regular {
+    margin-left: var(--margin-default);
+}
+
+.centered-no-flex {
+    text-align: center;
 }
 
 @media (min-width: 400px) {
@@ -411,5 +428,20 @@ form button {
 
     .rule-match-source {
         font-size: var(--font-size-smaller);
+    }
+
+    .add-rule-container {
+        width: 600px;
+        /*min-height: 450px;*/
+        /*border: 1px solid var(--green3);*/
+        /*border-radius: 4px;*/
+        /*background-color: #fafafa;*/
+        margin: var(--margin-large) 0;
+        /*box-shadow: 3px 3px 10px lightgrey;*/
+    }
+
+    .centered {
+        align-items: flex-start;
+        justify-content: center;
     }
 }
