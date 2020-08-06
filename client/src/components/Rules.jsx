@@ -83,6 +83,8 @@ class Rules extends Component {
                     updateRule={this.props.updateRule}
                     resetRuleFilter={this.resetFilter}
                     isValidRule={this.isValidRule.bind(this)}
+                    filterString={this.state.filterString}
+                    filterRules={this.filterRules.bind(this)} /* New */
                 />
             );
         });
@@ -100,72 +102,87 @@ class Rules extends Component {
         }
 
         return (
-            <div className="row mt-3 mb-3">
-                <div className="col">
-                    <h3 className="d-inline">Rules</h3>
-                    <form className="d-inline float-right form-inline">
-                        <label className="sr-only" htmlFor="ruleFilter">
-                            Filter
-                        </label>
-                        <div className="input-group mb-2 mr-sm-2">
-                            <input
-                                type="text"
-                                className="form-control border border-secondary"
-                                id="ruleFilter"
-                                placeholder="Filter rules..."
-                                value={this.state.filterString}
-                                onChange={(event) =>
-                                    this.filterRules(event.target.value)
-                                }
-                            />
-                            <div className="input-group-append">
-                                <button
-                                    className="btn btn-outline-secondary"
-                                    type="button"
-                                    id="clearFilter"
-                                    onClick={this.resetFilter}
-                                    title="Clear filter"
-                                >
-                                    <span className="fas fa-times"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <table className="table small">
+            <div>
+                <div className="rules-header">
+                    <h1 className="page-title">Rules</h1>
+                    <div className="rule-filter">
+                        <input
+                            type="text"
+                            id="ruleFilter"
+                            className="input-filter"
+                            name=""
+                            placeholder="Filter rules..."
+                            value={this.state.filterString}
+                            onChange={(event) =>
+                                this.filterRules(event.target.value)
+                            }
+                        />
+                        <span
+                            className="input-filter-clear"
+                            title="Clear filter"
+                            onClick={this.resetFilter}
+                        >
+                            <svg
+                                width="1.5em"
+                                height="1.5em"
+                                viewBox="0 -1 16 16"
+                                fill="#115937"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"
+                                />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div style={{ overflowX: "auto" }}>
+                    <table>
                         <thead>
                             <tr>
-                                <th scope="col" className="table-col-number">
-                                    #
+                                <th>
+                                    <span className="table-heading">#</span>
                                 </th>
-                                <th scope="col" className="table-col-name">
-                                    Name
+                                <th>
+                                    <span className="table-heading">Name</span>
                                 </th>
-                                <th scope="col" className="table-col-search">
-                                    Search
+                                <th>
+                                    <span className="table-heading">
+                                        Search
+                                    </span>
                                 </th>
-                                <th scope="col" className="table-col-details">
-                                    Details
+                                <th>
+                                    <span className="table-heading">
+                                        Details
+                                    </span>
                                 </th>
-                                <th
-                                    scope="col"
-                                    className="table-col-correction"
-                                >
-                                    Correction
+                                <th>
+                                    <span className="table-heading">
+                                        Correction
+                                    </span>
                                 </th>
-                                <th scope="col" className="table-col-source">
-                                    Source
+                                <th>
+                                    <span className="table-heading">
+                                        Source
+                                    </span>
                                 </th>
-                                <th scope="col" className="table-col-enabled">
-                                    Enabled
+                                <th>
+                                    <span className="table-heading">
+                                        Enabled
+                                    </span>
                                 </th>
-                                <th scope="col" className="table-col-updated">
-                                    Updated
+                                <th>
+                                    <span className="table-heading">
+                                        Updated
+                                    </span>
                                 </th>
-                                <th scope="col" className="table-col-edit"></th>
-                                <th
-                                    scope="col"
-                                    className="table-col-delete"
-                                ></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>{rules}</tbody>

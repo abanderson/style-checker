@@ -13,6 +13,8 @@
     --margin-default: 1rem;
     --margin-smaller: 0.5rem;
     --margin-small: 0.25rem;
+    --margin-larger: 1.15rem;
+    --margin-large: 1.5rem;
 
     --font-family-default: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
@@ -20,6 +22,7 @@
     --font-size-smaller: 0.85rem;
     --font-size-regular: 1rem;
     --font-size-larger: 1.15rem;
+    --font-size-large: 1.5rem;
 }
 
 * {
@@ -85,6 +88,44 @@ pre {
     line-height: 1.5;
     font-family: var(--font-family-default);
     color: var(--secondary-text);
+}
+
+table {
+    padding: var(--padding-default);
+    width: 100%;
+    border-spacing: 0;
+}
+
+table caption {
+    text-align: left;
+    font-size: var(--font-size-larger);
+    color: var(--green3);
+    margin: var(--margin-default) 0 0 var(--margin-default);
+}
+
+th,
+td {
+    padding: var(--padding-smaller);
+}
+
+th {
+    border-bottom: 2px solid var(--green2);
+}
+
+td {
+    border-bottom: 1px dashed var(--green2);
+    text-align: center;
+}
+
+tr:last-child td {
+    border: none;
+}
+
+table input {
+    width: 100%;
+    padding: var(--padding-small);
+    border: 1px solid lightgrey;
+    border-radius: 4px;
 }
 
 .logo {
@@ -215,6 +256,114 @@ pre {
     color: var(--green1);
 }
 
+.table-heading {
+    color: var(--green1);
+    /*background-color: var(--light1);*/
+    /*padding: 0.2rem 0.75rem;*/
+    /*border-radius: 8px;*/
+    /*font-weight: 500;*/
+}
+
+/*.table-number {
+    text-align: right;
+}*/
+
+.table-icon {
+    cursor: pointer;
+}
+
+.table-edit {
+    background-color: var(--light1);
+}
+
+.rules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-default) var(--padding-default)
+        var(--padding-smaller) var(--padding-default);
+}
+
+.page-title {
+    font-size: var(--font-size-larger);
+    font-weight: 200;
+}
+
+.input-filter {
+    width: 150px;
+    padding: var(--padding-smaller);
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    line-height: 1.5;
+}
+
+.add-rule-container {
+    width: 100%;
+    border: 1px solid var(--green3);
+    border-radius: 4px;
+    background-color: #fafafa;
+    margin: var(--margin-default);
+    /*box-shadow: 3px 3px 10px lightgrey;*/
+}
+
+.centered {
+    /*align-items: center;*/
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.form-section {
+    margin: var(--margin-default);
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: var(--margin-small);
+}
+
+form button {
+    margin: 0 var(--margin-default) var(--margin-default) var(--margin-default);
+    padding: var(--padding-smaller) var(--padding-default);
+    border-radius: 4px;
+    border: 1px solid var(--green2);
+    background-color: var(--green2);
+    color: var(--light1);
+}
+
+form button:hover {
+    border: 1px solid var(--green1);
+    cursor: pointer;
+}
+
+form button:active {
+    background-color: var(--green1);
+}
+
+.form-text-input {
+    padding: var(--padding-smaller);
+    border: 1px solid var(--light1);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.form-text-input:focus {
+    border: 1px solid lightgrey;
+}
+
+.form-error-text {
+    font-size: var(--font-size-smaller);
+    margin: 0.25rem 0.5rem 0 0.5rem;
+    color: red;
+}
+
+.margin-left-regular {
+    margin-left: var(--margin-default);
+}
+
+.centered-no-flex {
+    text-align: center;
+}
+
 @media (min-width: 400px) {
     header {
         font-size: var(--font-size-regular);
@@ -224,6 +373,19 @@ pre {
     .header-text {
         color: var(--light1);
         font-size: var(--font-size-larger);
+    }
+
+    .rules-header {
+        padding: var(--padding-smaller) var(--padding-smaller)
+            var(--padding-small) var(--padding-smaller);
+    }
+
+    .input-filter {
+        width: 250px;
+    }
+
+    .page-title {
+        font-size: var(--font-size-large);
     }
 }
 
@@ -266,5 +428,20 @@ pre {
 
     .rule-match-source {
         font-size: var(--font-size-smaller);
+    }
+
+    .add-rule-container {
+        width: 600px;
+        /*min-height: 450px;*/
+        /*border: 1px solid var(--green3);*/
+        /*border-radius: 4px;*/
+        /*background-color: #fafafa;*/
+        margin: var(--margin-large) 0;
+        /*box-shadow: 3px 3px 10px lightgrey;*/
+    }
+
+    .centered {
+        align-items: flex-start;
+        justify-content: center;
     }
 }
