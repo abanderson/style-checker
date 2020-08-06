@@ -13,7 +13,7 @@ class AddRule extends Component {
             correctionRegex: "",
             ruleSource: "",
             isEnabled: true,
-            validationErrorMessage: ""
+            validationErrorMessage: "",
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,7 @@ class AddRule extends Component {
             correctionRegex: "",
             ruleSource: "",
             isEnabled: true,
-            validationErrorMessage: ""
+            validationErrorMessage: "",
         });
     }
 
@@ -39,7 +39,7 @@ class AddRule extends Component {
         const name = target.name;
 
         this.setState({
-            [name]: value
+            [name]: value,
         });
     }
 
@@ -55,14 +55,14 @@ class AddRule extends Component {
                 displayText: this.state.displayText,
                 correctionRegex: this.state.correctionRegex,
                 ruleSource: this.state.ruleSource,
-                isEnabled: this.state.isEnabled
+                isEnabled: this.state.isEnabled,
             })
                 .then(() => {
                     this.props.onAddRule();
                     this.resetState();
                     this.props.history.push("/rules");
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         }
@@ -73,118 +73,95 @@ class AddRule extends Component {
         let errorMessage = "";
 
         if (this.state.searchRegex === "") {
-            errorMessage = "Field cannot be blank";
+            errorMessage = "Search expression cannot be blank";
             isValid = false;
         } else {
-            this.props.styleRules.forEach(rule => {
+            this.props.styleRules.forEach((rule) => {
                 if (this.state.searchRegex === rule.searchRegex) {
                     errorMessage =
-                        "This expression already exists in the database.";
+                        "The search expression already exists in the database.";
                     isValid = false;
                 }
             });
         }
 
         this.setState({
-            validationErrorMessage: errorMessage
+            validationErrorMessage: errorMessage,
         });
+
+        window.alert(errorMessage);
 
         return isValid;
     }
 
     render() {
         return (
-            <div className="row mt-3 mb-3 justify-content-center">
-                <div className="col-lg-8">
-                    <h3>Add Rule</h3>
+            <div className="main-container centered">
+                <div className="add-rule-container">
+                    <h1 class="margin-left-regular">Add Rule</h1>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
+                        <div className="form-section">
                             <label htmlFor="ruleName">Rule name</label>
                             <input
-                                name="ruleName"
+                                className="form-text-input"
                                 type="text"
-                                className="form-control"
-                                id="ruleName"
+                                name="ruleName"
                                 placeholder="Enter rule name"
                                 value={this.state.ruleName}
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-section">
                             <label htmlFor="searchRegex">
                                 Search expression
                             </label>
                             <input
-                                name="searchRegex"
+                                className="form-text-input"
                                 type="text"
-                                className="form-control"
-                                id="searchRegex"
+                                name="searchRegex"
                                 placeholder="Enter regular expression"
                                 value={this.state.searchRegex}
                                 onChange={this.handleChange}
                             />
-                            <small className="searchRegexInfo text-danger">
-                                {this.state.validationErrorMessage}
-                            </small>
                         </div>
-                        <div className="form-group">
+                        <div className="form-section">
                             <label htmlFor="displayText">Display text</label>
                             <input
-                                name="displayText"
+                                className="form-text-input"
                                 type="text"
-                                className="form-control"
-                                id="displayText"
+                                name="displayText"
                                 placeholder="Enter display text"
                                 value={this.state.displayText}
                                 onChange={this.handleChange}
                             />
                         </div>
-
-                        <div className="form-group">
+                        <div className="form-section">
                             <label htmlFor="correctionRegex">
                                 Correction expression
                             </label>
                             <input
-                                name="correctionRegex"
+                                className="form-text-input"
                                 type="text"
-                                className="form-control"
-                                id="correctionRegex"
-                                placeholder="Enter regular expression"
+                                name="correctionRegex"
+                                placeholder="Enter regular expression "
                                 value={this.state.correctionRegex}
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-section">
                             <label htmlFor="ruleSource">Rule source</label>
                             <input
-                                name="ruleSource"
+                                className="form-text-input"
                                 type="text"
-                                className="form-control"
-                                id="ruleSource"
+                                name="ruleSource"
                                 placeholder="Enter rule source"
                                 value={this.state.ruleSource}
                                 onChange={this.handleChange}
                             />
                         </div>
-                        <div className="form-group form-check">
-                            <input
-                                name="isEnabled"
-                                type="checkbox"
-                                className="form-check-input"
-                                id="isEnabled"
-                                checked={this.state.isEnabled}
-                                onChange={this.handleChange}
-                            />
-                            <label
-                                className="form-check-label"
-                                htmlFor="isEnabled"
-                            >
-                                Rule enabled?
-                            </label>
+                        <div className="centered-no-flex">
+                            <button type="submit">Submit</button>
                         </div>
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
                     </form>
                 </div>
             </div>
@@ -195,7 +172,7 @@ class AddRule extends Component {
 AddRule.propTypes = {
     onAddRule: PropTypes.func,
     history: PropTypes.object,
-    styleRules: PropTypes.array
+    styleRules: PropTypes.array,
 };
 
 export default AddRule;
