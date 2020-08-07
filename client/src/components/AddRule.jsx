@@ -89,7 +89,9 @@ class AddRule extends Component {
             validationErrorMessage: errorMessage,
         });
 
-        window.alert(errorMessage);
+        if (!isValid) {
+            window.alert(errorMessage);
+        }
 
         return isValid;
     }
