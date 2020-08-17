@@ -50,11 +50,11 @@ class AddRule extends Component {
 
         if (isValid) {
             Axios.post("/rules/", {
-                ruleName: this.state.ruleName,
+                ruleName: this.state.ruleName.trim(),
                 searchRegex: this.state.searchRegex,
-                displayText: this.state.displayText,
+                displayText: this.state.displayText.trim(),
                 correctionRegex: this.state.correctionRegex,
-                ruleSource: this.state.ruleSource,
+                ruleSource: this.state.ruleSource.trim(),
                 isEnabled: this.state.isEnabled,
             })
                 .then(() => {
