@@ -46,9 +46,7 @@ class ResultsText extends Component {
                     {this.props.highlightedText.text !== "" ? (
                         <pre className="results-text">
                             {this.props.highlightedText.preText}
-                            <span className="highlighted-text">
-                                {this.props.highlightedText.text}
-                            </span>
+                            <mark>{this.props.highlightedText.text}</mark>
                             {this.props.highlightedText.postText}
                         </pre>
                     ) : (
