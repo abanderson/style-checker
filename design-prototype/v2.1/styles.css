@@ -165,12 +165,16 @@ table input {
 
 .control-bar {
     display: flex;
+    flex-direction: row-reverse;
 }
 
 .control-button {
     cursor: pointer;
-    margin-right: var(--margin-default);
-    /*margin-left: var(--margin-smaller);*/
+    margin-left: var(--margin-smaller);
+}
+
+.control-button:first-child {
+    margin-right: var(--margin-small);
 }
 
 .rule-matches-container {
