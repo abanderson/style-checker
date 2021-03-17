@@ -12,7 +12,8 @@ class Rule extends Component {
             displayText: "",
             correctionRegex: "",
             ruleSource: "",
-            ruleEnabled: true,
+            // ruleEnabled: true,
+            ruleEnabled: props.rule.isEnabled,
             ruleNameFocusSet: false,
         };
 
@@ -77,8 +78,8 @@ class Rule extends Component {
             });
         }
 
-        const filter = this.props.filterString + " ";
-        this.props.filterRules(filter);
+        // const filter = this.props.filterString;
+        // this.props.filterRules(filter);
     }
 
     handleChange(event) {
@@ -93,13 +94,25 @@ class Rule extends Component {
     }
 
     handleToggleEnabled(event, updateDatabase) {
-        const update = !this.props.rule.isEnabled;
+        // ToDo: The display of the toggle still doesn't work correctly when rules are filtered.
+
+        // const update = !this.props.rule.isEnabled;
+        const update = !this.state.ruleEnabled
+
+        console.log(update);
 
         if (updateDatabase) {
+            // console.log("Update database");
             this.props.updateRule(this.props.rule.id, { isEnabled: update });
+            // this.props.updateRule(this.props.rule.id, { isEnabled: !this.props.rule.isEnabled });
+            this.props.filterRules(this.props.filterString);
         }
 
         this.setState({ ruleEnabled: update });
+
+        // if (this.props.filterString) {
+        //     this.props.filterRules(this.props.filterString);
+        // }
     }
 
     render() {
